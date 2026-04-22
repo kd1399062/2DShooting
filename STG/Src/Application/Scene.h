@@ -27,6 +27,8 @@ private:
 
 	std::shared_ptr<C_BaseScene> m_nowScene;
 
+	int test = 0;
+
 public:
 	static Scene& GetInstance()
 	{
