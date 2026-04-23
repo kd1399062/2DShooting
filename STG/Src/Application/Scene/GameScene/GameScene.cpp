@@ -1,8 +1,13 @@
 #include "GameScene.h"
+#include "Object/Back/Back.h"
 #include "Object/Player/Player.h"
 
 void C_GameScene::Init()
 {
+	// ”wŒi
+	m_back = std::make_shared<C_Back>();
+	m_back->Init();
+
 	// ƒvƒŒƒCƒ„[
 	m_player = std::make_shared<C_Player>();
 	m_player->Init();
@@ -10,12 +15,14 @@ void C_GameScene::Init()
 
 void C_GameScene::Draw()
 {
+	m_back->Draw();
 	m_player->Draw();
 
 }
 
 void C_GameScene::Update()
 {
+	m_back->Update();
 	m_player->Update();
 }
 

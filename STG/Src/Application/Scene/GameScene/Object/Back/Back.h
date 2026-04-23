@@ -2,16 +2,16 @@
 
 #include "../BaseObject.h"
 
-class C_Player : public C_BaseObject
+class C_Back : public C_BaseObject
 {
 public:
-	C_Player() {}
-	~C_Player() { Relese(); }
+	C_Back() {}
+	~C_Back() { Relese(); }
 
 	void Init() override;		// ‰Šú‰»
 	void Update() override;		// XV
 	void Draw() override;		// •`‰æ
-
+	
 private:
 	void Relese();		// ‰ğ•úˆ—
 };

@@ -2,6 +2,7 @@
 #include "../BaseScene.h"
 
 //============================== 前方宣言 ==============================
+class C_Back;
 class C_Player;
 
 class C_GameScene : public C_BaseScene
@@ -17,6 +18,7 @@ public:
 
 private:
 	//============================== クラスポインタ宣言 ==============================
+	std::shared_ptr<C_Back> m_back;
 	std::shared_ptr<C_Player> m_player;
 
 };
