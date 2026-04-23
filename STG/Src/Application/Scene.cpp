@@ -5,7 +5,8 @@
 
 void Scene::Init()
 {
-	m_nowScene = std::make_shared<C_TitleScene>();
+	m_nowScene = std::make_shared<C_GameScene>();
+	m_nowScene->Init();
 }
 
 void Scene::Draw2D()

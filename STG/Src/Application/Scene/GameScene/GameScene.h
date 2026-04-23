@@ -1,6 +1,9 @@
 #pragma once
 #include "../BaseScene.h"
 
+//============================== 前方宣言 ==============================
+class C_Player;
+
 class C_GameScene : public C_BaseScene
 {
 public:
@@ -13,6 +16,7 @@ public:
 	void Release() override;
 
 private:
-	KdTexture m_tex;
+	//============================== クラスポインタ宣言 ==============================
+	std::shared_ptr<C_Player> m_player;
 
 };
