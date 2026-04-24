@@ -21,7 +21,7 @@ protected:
 	Math::Matrix    m_transMat;			// 移動行列
 	Math::Matrix    m_rotasionMat;		// 移動行列
 	Math::Matrix    m_mat;				// 合成行列
-	float           m_scaleX = 1.0f;	//横拡大率
+	float           m_scaleX = 1.0f;	// 拡大率
 	bool			m_aliveFlg = true;	// 生存フラグ
 
 

@@ -9,20 +9,20 @@ public:
 	C_Player() {}
 	~C_Player() { Relese(); }
 
-	void Init() override;						// 初期化
-	void Update(Math::Vector2 pPos);						// 更新
-	void Draw() override;						// 描画
+	void Init() override;								// 初期化
+	void Update(Math::Vector2 pPos);					// 更新
+	void Draw() override;								// 描画
 
-	Math::Vector2 GetPlayerPos() { return m_pos; }		// プレイヤー座標取得
 	Math::Vector2 GetScroll() { return m_scroll; }		// スクロール値取得
 
+	// 移動範囲
+	Math::Vector2 m_pPosMax;		// 最大移動範囲
+	Math::Vector2 m_pPosMin;		// 最小移動範囲
 
-	Math::Vector2 m_scroll;
-	Math::Vector2 m_scrollMax;
-	Math::Vector2 m_scrollMin;
-
-	Math::Vector2 m_pPosMax;
-	Math::Vector2 m_pPosMin;
+	// スクロール
+	Math::Vector2 m_scroll;			// スクロール値
+	Math::Vector2 m_scrollMax;		// 最大スクロール値
+	Math::Vector2 m_scrollMin;		// 最小スクロール値
 
 private:
 	void Relese();		// 解放処理
@@ -37,5 +37,8 @@ private:
 
 	// プレイヤーサイズ
 	const Math::Vector2 PLAYER_SIZE = { 64,64 };
+
+	Math::Vector2 m_move = { 0,0 };		// 移動量
+	float m_pSpeed = 10;				// 移動速度
 
 };

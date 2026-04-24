@@ -25,23 +25,29 @@ void C_Player::Init()
 void C_Player::Update(Math::Vector2 pPos)
 {
 	//============================== 移動処理 ==============================
+	// 移動量初期化
+	m_move = { 0,0 };
+
 	// キー移動
 	if (GetAsyncKeyState('A') & 0x8000)
 	{
-		m_pos.x -= 5;
+		m_move.x -= m_pSpeed;
 	}
 	if (GetAsyncKeyState('D') & 0x8000)
 	{
-		m_pos.x += 5;
+		m_move.x += m_pSpeed;
 	}
 	if (GetAsyncKeyState('W') & 0x8000)
 	{
-		m_pos.y += 5;
+		m_move.y += m_pSpeed;
 	}
 	if (GetAsyncKeyState('S') & 0x8000)
 	{
-		m_pos.y -= 5;
+		m_move.y -= m_pSpeed;
 	}
+
+	// 座標確定
+	m_pos += m_move;
 
 	// 移動範囲制限
 	if (m_pos.x > m_pPosMax.x) m_pos.x = m_pPosMax.x;
