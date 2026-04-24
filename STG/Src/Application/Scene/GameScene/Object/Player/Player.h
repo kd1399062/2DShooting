@@ -21,11 +21,21 @@ public:
 	Math::Vector2 m_scrollMax;
 	Math::Vector2 m_scrollMin;
 
+	Math::Vector2 m_pPosMax;
+	Math::Vector2 m_pPosMin;
+
 private:
 	void Relese();		// 解放処理
 
+	// 画面サイズ
 	const float WINDOW_WIDTH = 1280;
 	const float WINDOW_HIGHT = 720;
-	const float MAP_WIDTH = 1280 * 4;
-	const float MAP_HIGHT = 720 * 4;
+
+	// マップサイズ
+	const float MAP_WIDTH = 1280 * 2;
+	const float MAP_HIGHT = 720 * 2;
+
+	// プレイヤーサイズ
+	const Math::Vector2 PLAYER_SIZE = { 64,64 };
+
 };
