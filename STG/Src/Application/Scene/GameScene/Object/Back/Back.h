@@ -16,11 +16,16 @@ public:
 private:
 	void Relese();		// ‰ğ•úˆ—
 
+	const float MAP_WIDTH = 1280 * 2;
+	const float MAP_HEGHT = 720 * 2;
+
 	//ƒXƒNƒ[ƒ‹
 	Math::Vector2 m_scroll = { 0,0 };
 	float m_scrollX = 0;
 	int scrollMin;
 	int scrollMax;
+
+
 
 	std::shared_ptr<C_Player> m_player;
 };
