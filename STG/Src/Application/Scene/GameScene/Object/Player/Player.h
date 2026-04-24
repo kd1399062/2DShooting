@@ -25,7 +25,7 @@ private:
 	void Relese();		// ‰ğ•úˆ—
 
 	const float WINDOW_WIDTH = 1280;
-	const float WINDOW_HEGHT = 720;
+	const float WINDOW_HIGHT = 720;
 	const float MAP_WIDTH = 1280 * 4;
-	const float MAP_HEGHT = 720 * 4;
+	const float MAP_HIGHT = 720 * 4;
 };

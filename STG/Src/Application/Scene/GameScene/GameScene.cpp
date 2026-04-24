@@ -22,8 +22,8 @@ void C_GameScene::Draw()
 
 void C_GameScene::Update()
 {
-	m_back->Update(m_player->GetPlayerPos());
-	m_player->Update(m_player->GetPlayerPos());
+	m_back->Update(m_player->GetScroll());
+	m_player->Update(m_player->GetScroll());
 }
 
 void C_GameScene::Release()
