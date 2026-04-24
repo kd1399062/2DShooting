@@ -1,6 +1,7 @@
 #pragma once
-
 #include "../BaseObject.h"
+
+class C_Player;
 
 class C_Back : public C_BaseObject
 {
@@ -9,9 +10,17 @@ public:
 	~C_Back() { Relese(); }
 
 	void Init() override;		// 初期化
-	void Update() override;		// 更新
+	void Update(Math::Vector2 pPos);		// 更新
 	void Draw() override;		// 描画
 	
 private:
 	void Relese();		// 解放処理
+
+	//スクロール
+	Math::Vector2 m_scroll = { 0,0 };
+	float m_scrollX = 0;
+	int scrollMin;
+	int scrollMax;
+
+	std::shared_ptr<C_Player> m_player;
 };
