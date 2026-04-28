@@ -34,10 +34,10 @@ private:
 	void ChangeScene(SceneType _SceneType);
 
 	// 現在のシーン
-	std::shared_ptr<C_BaseScene> m_CurrrentScene;
+	std::shared_ptr<C_BaseScene> m_CurrentScene;
 
-	// ゲーム開始時のシーンを設定
-	SceneType m_currentSceneType = SceneType::Game;
+	// ゲーム開始時のシーン設定
+	SceneType m_currentSceneType = SceneType::Title;
 
 	// 次のシーン
 	SceneType m_nextSceneType = m_currentSceneType;

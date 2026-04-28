@@ -30,6 +30,12 @@ void C_GameScene::Update()
 
 	// 背景
 	m_back->Update(m_player->GetScroll());
+
+	// Zでタイトルシーンへ遷移
+	if (GetAsyncKeyState('Z') & 0x8000)
+	{
+		C_SceneManager::Instance().SetNextScene(C_SceneManager::SceneType::Title);
+	}
 }
 
 void C_GameScene::Release()

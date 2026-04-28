@@ -1,23 +1,26 @@
 #include "main.h"
 #include "Scene.h"
-#include "Scene/TitleScene/TitleScene.h"
-#include "Scene/GameScene/GameScene.h"
+//#include "Scene/TitleScene/TitleScene.h"
+//#include "Scene/GameScene/GameScene.h"
 #include "Scene/SceneManager.h"
 
 void Scene::Init()
 {
-	m_nowScene = std::make_shared<C_GameScene>();
-	m_nowScene->Init();
+	//m_nowScene = std::make_shared<C_GameScene>();
+	//m_nowScene->Init();
 }
 
 void Scene::Draw2D()
 {
-	m_nowScene->Draw();
+	//m_nowScene->Draw();
+	C_SceneManager::Instance().Draw();
 }
 
 void Scene::Update()
 {
-	m_nowScene->Update();
+	//m_nowScene->Update();
+	C_SceneManager::Instance().PreUpdate();
+	C_SceneManager::Instance().Update();
 }
 
 void Scene::Release()

@@ -1,15 +1,7 @@
 #pragma once
 
-class C_BaseScene;
-
-// 各シーン名まとめ
-enum SCENENAME
-{
-	S_TITLE,      // タイトル
-	S_GAME,       // ゲーム中
-	S_GAMEOVER,   // ゲームオーバー
-	S_GAMECLEAR   // ゲームクリア
-};
+//class C_BaseScene;
+class SceneManager;
 
 class Scene
 {
@@ -25,7 +17,7 @@ public:
 private:
 	Scene() {}
 
-	std::shared_ptr<C_BaseScene> m_nowScene;
+	//std::shared_ptr<C_BaseScene> m_nowScene;
 
 public:
 	static Scene& GetInstance()

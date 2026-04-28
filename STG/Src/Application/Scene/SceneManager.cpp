@@ -1,10 +1,11 @@
 #include "SceneManager.h"
+
 #include "TitleScene/TitleScene.h"
 #include "GameScene/GameScene.h"
 
-
 void C_SceneManager::Init()
 {
+	// ゲーム開始時のシーン設定
 	ChangeScene(m_currentSceneType);
 }
 
@@ -19,12 +20,12 @@ void C_SceneManager::PreUpdate()
 
 void C_SceneManager::Update()
 {
-	m_CurrrentScene->Update();
+	m_CurrentScene->Update();
 }
 
 void C_SceneManager::Draw()
 {
-	m_CurrrentScene->Draw();
+	m_CurrentScene->Draw();
 }
 
 void C_SceneManager::Release()
@@ -36,16 +37,21 @@ void C_SceneManager::ChangeScene(SceneType _SceneType)
 	// 次のシーンを作成し、現在のシーンにする
 	switch (_SceneType)
 	{
-	case SceneType::Title:
-	{
-		m_CurrrentScene = std::make_shared<C_TitleScene>();
-		break;
+		case SceneType::Title:
+		{
+			m_CurrentScene = std::make_shared<C_TitleScene>();
+			break;
+		}
+		case SceneType::Game:
+		{
+			m_CurrentScene = std::make_shared<C_GameScene>();
+			break;
+		}
 	}
-	case SceneType::Game:
+
+	if (m_CurrentScene)
 	{
-		m_CurrrentScene = std::make_shared<C_GameScene>();
-		break;
-	}
+		m_CurrentScene->Init();
 	}
 
 	m_currentSceneType = _SceneType;
