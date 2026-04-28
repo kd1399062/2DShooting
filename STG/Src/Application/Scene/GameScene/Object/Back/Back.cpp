@@ -1,5 +1,4 @@
 #include "Back.h"
-#include "../Player/Player.h"
 
 void C_Back::Init()
 {
@@ -8,15 +7,12 @@ void C_Back::Init()
 	m_pos = { 0,0 };
 
 	m_aliveFlg = true;
-
-	// プレイヤー
-	m_player = std::make_shared<C_Player>();
 }
 
-void C_Back::Update(Math::Vector2 pPos)
+void C_Back::Update(Math::Vector2 scroll)
 {
 	// スクロール値を取得
-	m_scroll = pPos;
+	m_scroll = scroll;
 
 	//============================== 行列 ==============================
 	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);

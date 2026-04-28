@@ -1,4 +1,5 @@
 #include "TitleScene.h"
+#include "../SceneManager.h"
 
 void C_TitleScene::Init()
 {
@@ -12,6 +13,7 @@ void C_TitleScene::Draw()
 
 void C_TitleScene::Update()
 {
+
 }
 
 void C_TitleScene::Release()

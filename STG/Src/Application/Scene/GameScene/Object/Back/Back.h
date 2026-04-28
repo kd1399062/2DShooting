@@ -1,20 +1,18 @@
 #pragma once
 #include "../BaseObject.h"
 
-class C_Player;
-
 class C_Back : public C_BaseObject
 {
 public:
 	C_Back() {}
-	~C_Back() { Relese(); }
+	~C_Back() override { Relese(); }
 
-	void Init() override;		// ‰Šú‰»
+	void Init() override;					// ‰Šú‰»
 	void Update(Math::Vector2 pPos);		// XV
-	void Draw() override;		// •`‰æ
+	void Draw() override;					// •`‰æ
 	
 private:
-	void Relese();		// ‰ğ•úˆ—
+	void Relese() override;					// ‰ğ•úˆ—
 
 	const float MAP_WIDTH = 1280 * 2;
 	const float MAP_HEGHT = 720 * 2;
@@ -25,7 +23,4 @@ private:
 	int scrollMin;
 	int scrollMax;
 
-
-
-	std::shared_ptr<C_Player> m_player;
 };

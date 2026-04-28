@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Scene/TitleScene/TitleScene.h"
 #include "Scene/GameScene/GameScene.h"
+#include "Scene/SceneManager.h"
 
 void Scene::Init()
 {

@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "../SceneManager.h"
 #include "Object/Back/Back.h"
 #include "Object/Player/Player.h"
 
@@ -11,19 +12,24 @@ void C_GameScene::Init()
 	// プレイヤー
 	m_player = std::make_shared<C_Player>();
 	m_player->Init();
-
 }
 
 void C_GameScene::Draw()
 {
+	// 背景
 	m_back->Draw();
+
+	// プレイヤー
 	m_player->Draw();
 }
 
 void C_GameScene::Update()
 {
-	m_back->Update(m_player->GetScroll());
+	// プレイヤー
 	m_player->Update(m_player->GetScroll());
+
+	// 背景
+	m_back->Update(m_player->GetScroll());
 }
 
 void C_GameScene::Release()

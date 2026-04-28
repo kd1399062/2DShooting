@@ -1,16 +1,14 @@
 #pragma once
 #include "../BaseObject.h"
 
-class C_GameScene;
-
 class C_Player : public C_BaseObject
 {
 public:
 	C_Player() {}
-	~C_Player() { Relese(); }
+	~C_Player() override { Relese(); }
 
 	void Init() override;								// 初期化
-	void Update(Math::Vector2 pPos);					// 更新
+	void Update(Math::Vector2 scroll);					// 更新
 	void Draw() override;								// 描画
 
 	Math::Vector2 GetScroll() { return m_scroll; }		// スクロール値取得
@@ -25,7 +23,7 @@ public:
 	Math::Vector2 m_scrollMin;		// 最小スクロール値
 
 private:
-	void Relese();		// 解放処理
+	void Relese()	override;		// 解放処理
 
 	// 画面サイズ
 	const float WINDOW_WIDTH = 1280;

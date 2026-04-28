@@ -22,7 +22,7 @@ void C_Player::Init()
 
 }
 
-void C_Player::Update(Math::Vector2 pPos)
+void C_Player::Update(Math::Vector2 scroll)
 {
 	//============================== ˆÚ“®ˆ— ==============================
 	// ˆÚ“®—Ê‰Šú‰»
@@ -66,7 +66,7 @@ void C_Player::Update(Math::Vector2 pPos)
 
 	//============================== s—ñ ==============================
 	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);
-	m_transMat = Math::Matrix::CreateTranslation(m_pos.x - pPos.x, m_pos.y - pPos.y, 0);
+	m_transMat = Math::Matrix::CreateTranslation(m_pos.x - scroll.x, m_pos.y - scroll.y, 0);
 	m_mat = m_scaleMat * m_transMat;
 }
 
@@ -78,13 +78,13 @@ void C_Player::Draw()
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, 64, 64), 1.0f);
 
-	char str1[80];
+	/*char str1[80];
 	sprintf_s(str1, "m_scroll.xF%f", m_scroll.x);
 	SHADER.m_spriteShader.DrawString(0, 300, str1, Math::Vector4(0, 1, 0, 1));
 	char str2[80];
 	sprintf_s(str2, "m_scroll.yF%f", m_scroll.y);
 	SHADER.m_spriteShader.DrawString(0, 150, str2, Math::Vector4(0, 1, 0, 1));
-	
+	*/
 }
 
 void C_Player::Relese()

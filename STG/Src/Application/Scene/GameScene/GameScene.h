@@ -2,8 +2,7 @@
 #include "../BaseScene.h"
 
 //============================== 前方宣言 ==============================
-class C_Back;
-class C_Player;
+class C_BaseObject;
 
 class C_GameScene : public C_BaseScene
 {
@@ -11,14 +10,15 @@ public:
 	C_GameScene() {}
 	~C_GameScene() {}
 
-	void Init() override;
-	void Draw() override;
-	void Update() override;
-	void Release() override;
-
+	void Init()		override;
+	void Draw()		override;
+	void Update()	override;
+	
 private:
+	void Release()	override;
+
 	//============================== クラスポインタ宣言 ==============================
-	std::shared_ptr<C_Back> m_back;
-	std::shared_ptr<C_Player> m_player;
+	std::shared_ptr<C_BaseObject> m_back = nullptr;
+	std::shared_ptr<C_BaseObject> m_player = nullptr;
 
 };
