@@ -14,6 +14,6 @@ public:
 private:
 	void Relese()									override;	// ‰ğ•ú
 
-	const int ALIVE_MAX = 30;									// Å‘å¶‘¶ŠÔ
+	static const int ALIVE_MAX = 30;							// Å‘å¶‘¶ŠÔ
 	int m_aliveTime;											// ¶‘¶ŠÔ
 };

@@ -14,6 +14,8 @@ public:
 
 private:
     static const int MAX_BULLET = 100;
+    static const int MAX_COOLTIME = 5;
+    int m_coolTime;
 
     std::shared_ptr<C_Bullet> m_bullets[MAX_BULLET];
 };
