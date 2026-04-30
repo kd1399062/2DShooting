@@ -8,6 +8,7 @@ void C_BulletManager::Init()
 
 void C_BulletManager::Update()
 {
+    // 発射クールタイム設定
     if (m_coolTime > 0)
     {
         m_coolTime--;
@@ -17,6 +18,7 @@ void C_BulletManager::Update()
         m_coolTime = MAX_COOLTIME;
     }
 
+    // 弾更新
     for (int i = 0; i < MAX_BULLET; i++)
     {
         if (m_bullets[i])

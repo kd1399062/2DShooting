@@ -24,6 +24,10 @@ public:
 	Math::Vector2 m_scrollMax;		// 最大スクロール値
 	Math::Vector2 m_scrollMin;		// 最小スクロール値
 
+	//マウス座標関数
+	void GetMousePos(POINT* mousePos);
+	POINT m_mouse;
+
 private:
 	void Relese()	override;		// 解放処理
 

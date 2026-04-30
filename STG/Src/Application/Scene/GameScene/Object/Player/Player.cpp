@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "../Bullet/BulletManager.h"
+#include "../../../../main.h"
 
 void C_Player::Init()
 {
@@ -10,6 +11,9 @@ void C_Player::Init()
 	m_aliveFlg = true;
 
 	m_speed = 10;
+
+	m_mouse.x = 0;
+	m_mouse.y = 0;
 
 	// 移動範囲
 	m_pPosMax.x = MAP_WIDTH * 0.5 - PLAYER_SIZE.x * 0.5;
@@ -31,6 +35,9 @@ void C_Player::Init()
 
 void C_Player::Update(Math::Vector2 scroll)
 {
+	//マウス座標関数
+	GetMousePos(&m_mouse);
+
 	//==================== 移動処理 ====================
 	// 移動量初期化
 	m_move = { 0,0 };
@@ -71,15 +78,22 @@ void C_Player::Update(Math::Vector2 scroll)
 	if (m_scroll.y > m_scrollMax.y)m_scroll.y = m_scrollMax.y;
 
 	//==================== 弾発射処理 ====================
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 	{
+		// ワールド座標変更
+		Math::Vector2 mouseWorld;
+
+		mouseWorld.x = m_mouse.x + m_scroll.x;
+		mouseWorld.y = m_mouse.y + m_scroll.y;
+
+		m_shotDir = mouseWorld - m_pos;
+		m_shotDir.Normalize();
+
 		m_shot->CreateBullet(m_pos - m_scroll, m_shotDir);
 	}
 
-
 	// 弾
 	m_shot->Update();
-
 
 	//==================== 行列 ====================
 	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);
@@ -99,3 +113,14 @@ void C_Player::Draw()
 void C_Player::Relese()
 {
 }
+
+void C_Player::GetMousePos(POINT* mousePos)
+{
+	GetCursorPos(mousePos);
+	ScreenToClient(APP.m_window.GetWndHandle(), mousePos);
+	mousePos->x -= WINDOW_WIDTH / 2;
+	mousePos->y -= WINDOW_HIGHT / 2;
+	mousePos->y *= -1;
+}
+
+
