@@ -2,6 +2,7 @@
 #include "../SceneManager.h"
 #include "Object/Back/Back.h"
 #include "Object/Player/Player.h"
+#include "Object/Bullet/Bullet.h"
 
 void C_GameScene::Init()
 {
@@ -12,6 +13,7 @@ void C_GameScene::Init()
 	// プレイヤー
 	m_player = std::make_shared<C_Player>();
 	m_player->Init();
+
 }
 
 void C_GameScene::Draw()
@@ -21,6 +23,7 @@ void C_GameScene::Draw()
 
 	// プレイヤー
 	m_player->Draw();
+
 }
 
 void C_GameScene::Update()
@@ -31,6 +34,7 @@ void C_GameScene::Update()
 	// 背景
 	m_back->Update(m_player->GetScroll());
 
+
 	// Zでタイトルシーンへ遷移
 	if (GetAsyncKeyState('Z') & 0x8000)
 	{
@@ -40,6 +44,6 @@ void C_GameScene::Update()
 
 void C_GameScene::Release()
 {
-	//============================== 開放処理 ==============================
+	//==================== 開放処理 ====================
 	
 }

@@ -1,6 +1,5 @@
 #pragma once
 
-//class C_BaseScene;
 class SceneManager;
 
 class Scene
@@ -16,8 +15,6 @@ public:
 
 private:
 	Scene() {}
-
-	//std::shared_ptr<C_BaseScene> m_nowScene;
 
 public:
 	static Scene& GetInstance()

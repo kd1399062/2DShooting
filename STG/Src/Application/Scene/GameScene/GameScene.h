@@ -1,7 +1,7 @@
 #pragma once
 #include "../BaseScene.h"
 
-//============================== 前方宣言 ==============================
+//==================== 前方宣言 ====================
 class C_BaseObject;
 
 class C_GameScene : public C_BaseScene
@@ -17,8 +17,7 @@ public:
 private:
 	void Release()	override;
 
-	//============================== クラスポインタ宣言 ==============================
+	//==================== クラスポインタ宣言 ====================
 	std::shared_ptr<C_BaseObject> m_back = nullptr;
 	std::shared_ptr<C_BaseObject> m_player = nullptr;
-
 };

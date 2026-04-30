@@ -4,6 +4,10 @@ void C_BaseObject::Init()
 {
 }
 
+void C_BaseObject::Init(Math::Vector2 pos, Math::Vector2 dir)
+{
+}
+
 void C_BaseObject::Update()
 {
 }

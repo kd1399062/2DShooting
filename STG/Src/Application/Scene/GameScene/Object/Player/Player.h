@@ -1,6 +1,8 @@
 #pragma once
 #include "../BaseObject.h"
 
+class C_BulletManager;
+
 class C_Player : public C_BaseObject
 {
 public:
@@ -37,6 +39,7 @@ private:
 	const Math::Vector2 PLAYER_SIZE = { 64,64 };
 
 	Math::Vector2 m_move = { 0,0 };		// ˆÚ“®—Ê
-	float m_pSpeed = 10;				// ˆÚ“®‘¬“x
+	Math::Vector2 m_shotDir = { 0,1 };		// ’e”­ŽË•ûŒü
 
+	std::shared_ptr<C_BulletManager> m_shot = nullptr;
 };

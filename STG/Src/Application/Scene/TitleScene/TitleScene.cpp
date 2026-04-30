@@ -13,6 +13,7 @@ void C_TitleScene::Draw()
 
 void C_TitleScene::Update()
 {
+	// エンターでゲームシーンへ遷移
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
 		C_SceneManager::Instance().SetNextScene(C_SceneManager::SceneType::Game);
