@@ -6,22 +6,21 @@ void C_Player::Init()
 {
 	m_tex.Load("Texture/Player/Player.png");
 
-	m_pos = { 0,0 };
-
-	m_aliveFlg = true;
-
-	m_speed = 10;
+	m_aliveFlg	= true;
+	m_size		= { 64,64 };
+	m_pos		= { 0,0 };
+	m_speed		= 10;
 
 	m_mouse.x = 0;
 	m_mouse.y = 0;
 
-	// 移動範囲
-	m_pPosMax.x = MAP_WIDTH * 0.5 - PLAYER_SIZE.x * 0.5;
-	m_pPosMin.x = MAP_WIDTH * 0.5 * (-1) + PLAYER_SIZE.x * 0.5;
-	m_pPosMax.y = MAP_HIGHT * 0.5 - PLAYER_SIZE.y * 0.5;
-	m_pPosMin.y = MAP_HIGHT * 0.5 * (-1) + PLAYER_SIZE.y * 0.5;
+	// 移動範囲設定
+	m_posMax.x = MAP_WIDTH * 0.5 - m_size.x * 0.5;
+	m_posMin.x = MAP_WIDTH * 0.5 * (-1) + m_size.x * 0.5;
+	m_posMax.y = MAP_HIGHT * 0.5 - m_size.y * 0.5;
+	m_posMin.y = MAP_HIGHT * 0.5 * (-1) + m_size.y * 0.5;
 
-	// スクロール範囲
+	// スクロール範囲設定
 	m_scrollMax.x = WINDOW_WIDTH * 0.5;
 	m_scrollMin.x = WINDOW_WIDTH * 0.5 * (-1);
 	m_scrollMax.y = WINDOW_HIGHT * 0.5;
@@ -64,10 +63,10 @@ void C_Player::Update(Math::Vector2 scroll)
 	m_pos += m_move;
 
 	// 移動範囲制限
-	if (m_pos.x > m_pPosMax.x) m_pos.x = m_pPosMax.x;
-	if (m_pos.x < m_pPosMin.x) m_pos.x = m_pPosMin.x;
-	if (m_pos.y > m_pPosMax.y) m_pos.y = m_pPosMax.y;
-	if (m_pos.y < m_pPosMin.y) m_pos.y = m_pPosMin.y;
+	if (m_pos.x > m_posMax.x) m_pos.x = m_posMax.x;
+	if (m_pos.x < m_posMin.x) m_pos.x = m_posMin.x;
+	if (m_pos.y > m_posMax.y) m_pos.y = m_posMax.y;
+	if (m_pos.y < m_posMin.y) m_pos.y = m_posMin.y;
 
 	//==================== スクロール値計算 ====================
 	m_scroll = m_pos;

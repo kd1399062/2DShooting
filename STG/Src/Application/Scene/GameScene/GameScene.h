@@ -20,4 +20,5 @@ private:
 	//==================== クラスポインタ宣言 ====================
 	std::shared_ptr<C_BaseObject> m_back = nullptr;
 	std::shared_ptr<C_BaseObject> m_player = nullptr;
+	std::shared_ptr<C_BaseObject> m_enemy1 = nullptr;
 };

@@ -2,6 +2,7 @@
 #include "../SceneManager.h"
 #include "Object/Back/Back.h"
 #include "Object/Player/Player.h"
+#include "Object/Enemy/Enemy1/Enemy1.h"
 #include "Object/Bullet/Bullet.h"
 
 void C_GameScene::Init()
@@ -13,6 +14,9 @@ void C_GameScene::Init()
 	// プレイヤー
 	m_player = std::make_shared<C_Player>();
 	m_player->Init();
+	
+	m_enemy1 = std::make_shared<C_Enemy1>();
+	m_enemy1->Init();
 
 }
 
@@ -24,12 +28,16 @@ void C_GameScene::Draw()
 	// プレイヤー
 	m_player->Draw();
 
+	m_enemy1->Draw();
+
 }
 
 void C_GameScene::Update()
 {
 	// プレイヤー
 	m_player->Update(m_player->GetScroll());
+
+	m_enemy1->Update(m_player->GetScroll());
 
 	// 背景
 	m_back->Update(m_player->GetScroll());

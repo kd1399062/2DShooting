@@ -64,6 +64,12 @@
     <Filter Include="Src\Application\Scene\GameScene\Object\Bullet">
       <UniqueIdentifier>{d689d0df-0ff5-49a5-8dc5-f081019e9bb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Object\Enemy">
+      <UniqueIdentifier>{3a13ac4e-0082-42f4-9b1c-ab867ca834f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy1">
+      <UniqueIdentifier>{6b13a23a-fb5b-4bd3-b59d-5db6bd7e7074}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -186,6 +192,9 @@
     <ClInclude Include="Src\Application\Scene\GameScene\Object\Bullet\BulletManager.h">
       <Filter>Src\Application\Scene\GameScene\Object\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy1\Enemy1.h">
+      <Filter>Src\Application\Scene\GameScene\Object\Enemy\Enemy1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -277,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\GameScene\Object\Bullet\BulletManager.cpp">
       <Filter>Src\Application\Scene\GameScene\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy1\Enemy1.cpp">
+      <Filter>Src\Application\Scene\GameScene\Object\Enemy\Enemy1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
