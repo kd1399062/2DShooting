@@ -23,11 +23,9 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 	// ˆÚ“®—Ê‰Šú‰»
 	m_move = { 0,0 };
 
-	
+	// ‰¼ˆÚ“®ˆ—
 	if (m_pos.x >= m_posMax.x) i = true;
 	if (m_pos.x <= m_posMin.x) i = false;
-
-
 	if (i)
 	{
 		m_move.x -= m_speed;

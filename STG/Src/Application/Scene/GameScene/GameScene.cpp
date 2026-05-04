@@ -8,40 +8,58 @@
 void C_GameScene::Init()
 {
 	// 背景
+	std::shared_ptr<C_Back> m_back;
 	m_back = std::make_shared<C_Back>();
 	m_back->Init();
+	m_objList.push_back(m_back);
 
 	// プレイヤー
 	m_player = std::make_shared<C_Player>();
 	m_player->Init();
-	
+	m_objList.push_back(m_player);
+
+	// 敵１
+	std::shared_ptr<C_Enemy1> m_enemy1;
 	m_enemy1 = std::make_shared<C_Enemy1>();
 	m_enemy1->Init();
-
+	m_objList.push_back(m_enemy1);
+	
 }
 
 void C_GameScene::Draw()
 {
-	// 背景
-	m_back->Draw();
-
-	// プレイヤー
-	m_player->Draw();
-
-	m_enemy1->Draw();
-
+	// 全オブジェクトの描画
+	for (int i = 0;i < m_objList.size();i++)
+	{
+		m_objList[i]->Draw();
+	}
 }
 
 void C_GameScene::Update()
 {
-	// プレイヤー
-	m_player->Update(m_player->GetScroll());
+	// イテレータ作成 auto版
+	auto it = m_objList.begin();
 
-	m_enemy1->Update(m_player->GetScroll());
+	while (it != m_objList.end())	// end() は 最後の要素の1個後ろを返す
+	{
+		// オブジェクトの有効チェック
+		if ((*it)->GetAliveFlg() == false)
+		{
+			// 無効なオブジェクトをリストから削除
+			it = m_objList.erase(it);
+		}
+		else
+		{
+			it++;	// 次の要素へイテレータを進める
+		}
+	}
 
-	// 背景
-	m_back->Update(m_player->GetScroll());
 
+	// 全オブジェクトの更新
+	for (int i = 0;i < m_objList.size();i++)
+	{
+		m_objList[i]->Update(m_player->GetScroll());
+	}
 
 	// Zでタイトルシーンへ遷移
 	if (GetAsyncKeyState('Z') & 0x8000)

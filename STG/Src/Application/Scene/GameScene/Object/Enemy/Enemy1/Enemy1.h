@@ -16,6 +16,6 @@ public:
 private:
 	void Relese()	override;							// ‰ğ•úˆ—
 
-	bool i = true;
+	bool i = true;	// ‰¼ˆÚ“®ƒtƒ‰ƒO
 
 };

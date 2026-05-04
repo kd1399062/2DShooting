@@ -6,14 +6,13 @@ void C_Player::Init()
 {
 	m_tex.Load("Texture/Player/Player.png");
 
+	m_mouse.x	= 0;
+	m_mouse.y	= 0;
 	m_aliveFlg	= true;
 	m_size		= { 64,64 };
 	m_pos		= { 0,0 };
 	m_speed		= 10;
-
-	m_mouse.x = 0;
-	m_mouse.y = 0;
-
+	
 	// ˆÚ“®”ÍˆÍİ’è
 	m_posMax.x = MAP_WIDTH * 0.5 - m_size.x * 0.5;
 	m_posMin.x = MAP_WIDTH * 0.5 * (-1) + m_size.x * 0.5;
