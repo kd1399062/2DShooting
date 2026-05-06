@@ -7,7 +7,7 @@ public:
 	C_Bullet() {};
 	~C_Bullet() override { Relese(); };
 
-	void Init(Math::Vector2 pos, Math::Vector2 dir) override;	// ‰Šú‰»
+	void Init(Math::Vector2 pos, Math::Vector2 dir) override;	// ‰Šú‰» (¶¬À•W ”­Ë•ûŒü)
 	void Update()									override;	// XV
 	void Draw()										override;	// •`‰æ
 	bool IsAlive();												// ¶€”»’è

@@ -5,6 +5,7 @@ void C_Enemy1::Init()
 {
 	m_tex.Load("Texture/Enemy/Enemy1.png");
 
+	m_objType   = ObjectType::Enemy1;
 	m_aliveFlg	= true;
 	m_size		= { 64,64 };
 	m_pos		= { 100,0 };

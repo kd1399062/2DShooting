@@ -25,6 +25,18 @@ Math::Vector2 C_BaseObject::GetScroll()
 	return Math::Vector2();
 }
 
+void C_BaseObject::ShotCoolTime()
+{
+	if (m_shotCool <= m_shotCoolMax)
+	{
+		m_shotCool++;
+	}
+	else
+	{
+		m_shotCool = 0;
+	}
+}
+
 void C_BaseObject::Relese()
 {
 }

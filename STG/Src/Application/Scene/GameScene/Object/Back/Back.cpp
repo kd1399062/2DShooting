@@ -4,9 +4,9 @@ void C_Back::Init()
 {
 	m_tex.Load("Texture/Back/Back.png");
 
-	m_pos = { 0,0 };
-
+	m_objType = ObjectType::Back;
 	m_aliveFlg = true;
+	m_pos = { 0,0 };
 }
 
 void C_Back::Update(Math::Vector2 scroll)

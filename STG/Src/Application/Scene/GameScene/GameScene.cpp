@@ -16,6 +16,7 @@ void C_GameScene::Init()
 	// プレイヤー
 	m_player = std::make_shared<C_Player>();
 	m_player->Init();
+	m_player->SetOwner(this);
 	m_objList.push_back(m_player);
 
 	// 敵１
@@ -37,6 +38,7 @@ void C_GameScene::Draw()
 
 void C_GameScene::Update()
 {
+	//==================== 無効オブジェクト削除処理 ====================
 	// イテレータ作成 auto版
 	auto it = m_objList.begin();
 
@@ -54,11 +56,12 @@ void C_GameScene::Update()
 		}
 	}
 
-
+	//==================== 更新処理 ====================
 	// 全オブジェクトの更新
 	for (int i = 0;i < m_objList.size();i++)
 	{
 		m_objList[i]->Update(m_player->GetScroll());
+		m_objList[i]->Update();
 	}
 
 	// Zでタイトルシーンへ遷移
