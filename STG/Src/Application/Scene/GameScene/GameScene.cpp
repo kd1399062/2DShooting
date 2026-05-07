@@ -25,9 +25,9 @@ void C_GameScene::Init()
 	m_objList.push_back(m_player);
 
 	// “G‚P
-	std::shared_ptr<C_Enemy1> m_enemy1;
 	m_enemy1 = std::make_shared<C_Enemy1>();
 	m_enemy1->Init();
+	m_enemy1->SetOwner(this);
 	m_objList.push_back(m_enemy1);
 	
 }

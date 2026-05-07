@@ -1,7 +1,7 @@
 #pragma once
 #include "../../BaseObject.h"
 
-class C_BulletManager;
+class C_GameScene;
 
 class C_Enemy1 : public C_BaseObject
 {
@@ -14,8 +14,12 @@ public:
 	void Draw() override;								// 描画
 	void OnHit() override;								// 当たり判定時の処理
 
+	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
+
 private:
 	void Relese()	override;							// 解放処理
+
+	C_GameScene* m_owner = nullptr;
 
 	bool i = true;	// 仮移動フラグ
 

@@ -41,10 +41,6 @@ void C_CollisionManager::Update()
 				}
 			}
 
-			
-			{
-				
-			}
 		}
 	}
 }

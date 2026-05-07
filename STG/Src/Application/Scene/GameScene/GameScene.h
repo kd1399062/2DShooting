@@ -2,9 +2,11 @@
 #include "../BaseScene.h"
 
 //==================== 前方宣言 ====================
+class C_CollisionManager;
 class C_BaseObject;
 class C_Player;
-class C_CollisionManager;
+class C_Enemy1;
+
 
 class C_GameScene : public C_BaseScene
 {
@@ -39,6 +41,7 @@ private:
 
 	// プレイヤー
 	std::shared_ptr<C_Player> m_player;
+	std::shared_ptr<C_Enemy1> m_enemy1;
 
 	// 当たり判定
 	std::shared_ptr<C_CollisionManager> m_collision;

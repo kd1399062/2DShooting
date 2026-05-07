@@ -55,7 +55,7 @@ void C_BulletManager::CreateBullet(Math::Vector2 pos, Math::Vector2 dir)
         if (!m_bullets[i])
         {
             m_bullets[i] = std::make_shared<C_Bullet>();
-            m_bullets[i]->Init(pos, dir);
+            //m_bullets[i]->Init(pos, dir);
             break;
         }
     }

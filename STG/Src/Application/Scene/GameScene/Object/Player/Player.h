@@ -30,6 +30,4 @@ private:
 	Math::Vector2 m_scrollMin;							// 最小スクロール値
 
 	POINT m_mouse;										// マウスポインタ
-
-	Math::Vector2 m_shotDir = { 0,1 };					// 弾発射方向
 };

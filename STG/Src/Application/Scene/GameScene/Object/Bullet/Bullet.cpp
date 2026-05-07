@@ -1,17 +1,40 @@
 #include "Bullet.h"
 
-void C_Bullet::Init(Math::Vector2 pos, Math::Vector2 dir)
+void C_Bullet::Init(Math::Vector2 pos, Math::Vector2 dir, ObjectType obj)
 {
-	m_tex.Load("Texture/Bullet/pBullet.png");
-
-	m_objType = ObjectType::PBullet;
+	m_aliveFlg = true;
+	m_aliveTime = ALIVE_MAX;
 	m_pos = pos;
 	m_dir = dir;
-	m_speed = 20;
-	m_aliveTime = ALIVE_MAX;
-	m_radius = 16.0f;
 
-	m_aliveFlg = true;
+	// éwíËÇ≥ÇÍÇΩéÌóﬁÇ…âûÇ∂Çƒíeê∂ê¨
+	switch (obj)
+	{
+	case ObjectType::Player:
+		m_tex.Load("Texture/Bullet/pBullet.png");
+		m_objType = ObjectType::PBullet;
+		m_speed = 20;
+		m_radius = 16.0f;
+		break;
+	case ObjectType::Enemy1:
+		m_tex.Load("Texture/Bullet/e1Bullet.png");
+		m_objType = ObjectType::E1Bullet;
+		m_speed = 20;
+		m_radius = 16.0f;
+		break;
+	case ObjectType::Enemy2:
+		m_tex.Load("Texture/Bullet/e2Bullet.png");
+		m_objType = ObjectType::E2Bullet;
+		m_speed = 20;
+		m_radius = 16.0f;
+		break;
+	case ObjectType::Enemy3:
+		m_tex.Load("Texture/Bullet/e3Bullet.png");
+		m_objType = ObjectType::E3Bullet;
+		m_speed = 20;
+		m_radius = 16.0f;
+		break;
+	}
 }
 
 void C_Bullet::Update(Math::Vector2 scroll)

@@ -1,5 +1,7 @@
 #pragma once
 
+class C_GameScene;
+
 // 各オブジェクトの基底クラス
 class C_BaseObject
 {
@@ -23,22 +25,24 @@ public:
 	C_BaseObject() {}
 	virtual ~C_BaseObject() { Relese(); }
 
-	virtual void Init();										// 初期化
-	virtual void Init(Math::Vector2 pos, Math::Vector2 dir);	// Bullet用初期化
-	virtual void Update();										// 更新
-	virtual void Update(Math::Vector2 scroll);					// スクロール込み更新
-	virtual void Draw();										// 描画
-	virtual void OnHit();										// 当たり判定処理
-	virtual Math::Vector2 GetScroll();							// スクロール値取得
-	virtual void ShotCoolTime();								// 弾発射クールタイム計算
+	virtual void Init();														// 初期化
+	virtual void Init(Math::Vector2 pos, Math::Vector2 dir, ObjectType obj);	// Bullet用初期化 (生成座標 発射方向 弾の種類)
+	virtual void Update();														// 更新
+	virtual void Update(Math::Vector2 scroll);									// スクロール込み更新
+	virtual void Draw();														// 描画
+	virtual void OnHit();														// 当たり判定処理
+	virtual Math::Vector2 GetScroll();											// スクロール値取得
+	virtual void ShotCoolTime();												// 弾発射クールタイム計算
 
-	bool GetAliveFlg() { return m_aliveFlg; }					// 生存フラグ取得
-	float GetRadius() { return m_radius; }						// 半径取得
-	Math::Vector2 GetPos() { return m_pos; }					// 座標取得
-	ObjectType GetObjType() const { return m_objType; }			// オブジェクトタイプ取得
+	bool GetAliveFlg() { return m_aliveFlg; }									// 生存フラグ取得
+	float GetRadius() { return m_radius; }										// 半径取得
+	Math::Vector2 GetPos() { return m_pos; }									// 座標取得
+	ObjectType GetObjType() const { return m_objType; }							// オブジェクトタイプ取得
+
+	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }					// シーン情報をセット
 
 protected:
-	virtual void Relese();										// 解放
+	virtual void Relese();														// 解放
 
 	// 画面サイズ
 	const float WINDOW_WIDTH = 1280;			// 画面幅
@@ -47,6 +51,9 @@ protected:
 	// マップサイズ
 	const float MAP_WIDTH = WINDOW_WIDTH * 2;	// マップ幅
 	const float MAP_HIGHT = WINDOW_HIGHT * 2;	// マップ高さ
+
+	// オーナー
+	C_GameScene* m_owner = nullptr;
 
 	// オブジェクトの種類
 	ObjectType		m_objType = ObjectType::None;
@@ -63,6 +70,7 @@ protected:
 	Math::Matrix    m_transMat;						// 移動行列
 	Math::Matrix    m_rotasionMat;					// 移動行列
 	Math::Matrix    m_mat;							// 合成行列
+	Math::Vector2	m_shotDir		= { 0,0 };		// 弾発射方向
 	float           m_radius		= 1.0f;			// 半径
 	float           m_scaleX		= 1.0f;			// 拡大率
 	float           m_speed			= 1.0f;			// 移動速度

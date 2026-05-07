@@ -1,5 +1,6 @@
 #include "Enemy1.h"
-#include "../../Bullet/BulletManager.h"
+#include "../../../../../Scene/GameScene/GameScene.h"
+#include "../../Bullet/Bullet.h"
 
 void C_Enemy1::Init()
 {
@@ -11,6 +12,8 @@ void C_Enemy1::Init()
 	m_pos		= { 100,0 };
 	m_speed		= 10;
 	m_radius = 32.0f;
+	m_shotCoolMax = 3;
+	m_shotCool = m_shotCoolMax;
 
 	// à⁄ìÆîÕàÕê›íË
 	m_posMax.x = MAP_WIDTH * 0.5 - m_size.x * 0.5;
@@ -45,6 +48,19 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 	if (m_pos.x <= m_posMin.x) m_pos.x = m_posMin.x;
 	if (m_pos.y >= m_posMax.y) m_pos.y = m_posMax.y;
 	if (m_pos.y <= m_posMin.y) m_pos.y = m_posMin.y;
+
+	//==================== íeî≠éÀèàóù ====================
+	ShotCoolTime();
+
+	if (m_shotCool == m_shotCoolMax)
+	{
+		std::shared_ptr<C_Bullet> bullet;
+		bullet = std::make_shared<C_Bullet>();
+		bullet->Init(m_pos, m_shotDir, m_objType);
+		m_owner->AddObject(bullet);
+
+	}
+
 
 	//==================== çsóÒ ====================
 	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);

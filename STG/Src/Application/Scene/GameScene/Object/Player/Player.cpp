@@ -95,9 +95,9 @@ void C_Player::Update(Math::Vector2 scroll)
 			m_shotDir.Normalize();
 
 			std::shared_ptr<C_Bullet> bullet;
-			bullet = std::make_shared<C_Bullet>();	// ①生成
-			bullet->Init(m_pos, m_shotDir); // ②初期化
-			m_owner->AddObject(bullet);				// ④シーンのオブジェクトリストへ追加
+			bullet = std::make_shared<C_Bullet>();		// 生成
+			bullet->Init(m_pos, m_shotDir,m_objType);	// 初期化
+			m_owner->AddObject(bullet);					// シーンのオブジェクトリストへ追加
 		}
 
 	}
