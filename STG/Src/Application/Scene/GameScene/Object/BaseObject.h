@@ -10,13 +10,13 @@ public:
 		None,		// ‚È‚µ
 		Back,		// ”wŒi
 		Player,		// ƒvƒŒƒCƒ„[
-		PBullet,	// ƒvƒŒƒCƒ„[’e
 		Enemy1,		// “G1
-		E1Bullet,	// “G1
 		Enemy2,		// “G2
-		E2Bullet,	// “G2
 		Enemy3,		// “G3
-		E3Bullet,	// “G3
+		PBullet,	// ƒvƒŒƒCƒ„[’e
+		E1Bullet,	// “G1’e
+		E2Bullet,	// “G2’e
+		E3Bullet,	// “G3’e
 	};
 
 

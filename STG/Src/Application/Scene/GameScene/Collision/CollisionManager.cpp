@@ -21,18 +21,29 @@ void C_CollisionManager::Update()
 			float rad = 0;		// ‘ÎÛ‚Ì”¼Œa‚Ì‡Œv
 
 			// “–‚½‚è”»’è
-			if (a->GetObjType() == C_BaseObject::ObjectType::Enemy1 &&
-				b->GetObjType() == C_BaseObject::ObjectType::PBullet)
-			{
-				v = a->GetPos() - b->GetPos();
-				rad = a->GetRadius() + b->GetRadius();
 
-				if (v.Length() < rad)
+			// ƒvƒŒƒCƒ„[’e‚ÆŠe“G‚Ì“–‚½‚è”»’è
+			if (b->GetObjType() == C_BaseObject::ObjectType::PBullet)
+			{
+				if (a->GetObjType() == C_BaseObject::ObjectType::Enemy1 ||
+					a->GetObjType() == C_BaseObject::ObjectType::Enemy2 ||
+					a->GetObjType() == C_BaseObject::ObjectType::Enemy3)
 				{
-					// HITŽž‚Ìˆ—
-					a->OnHit();
-					b->OnHit();
+					v = a->GetPos() - b->GetPos();
+					rad = a->GetRadius() + b->GetRadius();
+
+					if (v.Length() < rad)
+					{
+						// HITŽž‚Ìˆ—
+						a->OnHit();
+						b->OnHit();
+					}
 				}
+			}
+
+			
+			{
+				
 			}
 		}
 	}
