@@ -70,6 +70,9 @@
     <Filter Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy1">
       <UniqueIdentifier>{6b13a23a-fb5b-4bd3-b59d-5db6bd7e7074}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Collision">
+      <UniqueIdentifier>{c077f689-efb4-45cd-b949-ce346b4f3dbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -195,6 +198,9 @@
     <ClInclude Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy1\Enemy1.h">
       <Filter>Src\Application\Scene\GameScene\Object\Enemy\Enemy1</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Collision\CollisionManager.h">
+      <Filter>Src\Application\Scene\GameScene\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -289,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy1\Enemy1.cpp">
       <Filter>Src\Application\Scene\GameScene\Object\Enemy\Enemy1</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Collision\CollisionManager.cpp">
+      <Filter>Src\Application\Scene\GameScene\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

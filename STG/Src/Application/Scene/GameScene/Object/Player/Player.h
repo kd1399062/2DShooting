@@ -12,6 +12,7 @@ public:
 	void Init() override;										// 初期化
 	void Update(Math::Vector2 scroll) override;					// 更新
 	void Draw() override;										// 描画
+	void OnHit() override;										// 当たり判定時の処理
 
 	void GetMousePos(POINT* mousePos);							// マウス座標関数
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット

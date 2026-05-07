@@ -8,9 +8,10 @@ public:
 	~C_Bullet() override { Relese(); };
 
 	void Init(Math::Vector2 pos, Math::Vector2 dir) override;	// 初期化 (生成座標 発射方向)
-	void Update()									override;	// 更新
+	void Update(Math::Vector2 scroll)				override;	// 更新
 	void Draw()										override;	// 描画
-	bool IsAlive();												// 生死判定
+	void OnHit()									override;	// 当たり判定時の処理
+
 private:
 	void Relese()									override;	// 解放
 

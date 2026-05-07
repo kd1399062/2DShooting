@@ -12,6 +12,11 @@ public:
 		Player,		// プレイヤー
 		PBullet,	// プレイヤー弾
 		Enemy1,		// 敵1
+		E1Bullet,	// 敵1
+		Enemy2,		// 敵2
+		E2Bullet,	// 敵2
+		Enemy3,		// 敵3
+		E3Bullet,	// 敵3
 	};
 
 
@@ -23,9 +28,14 @@ public:
 	virtual void Update();										// 更新
 	virtual void Update(Math::Vector2 scroll);					// スクロール込み更新
 	virtual void Draw();										// 描画
+	virtual void OnHit();										// 当たり判定処理
 	virtual Math::Vector2 GetScroll();							// スクロール値取得
 	virtual void ShotCoolTime();								// 弾発射クールタイム計算
+
 	bool GetAliveFlg() { return m_aliveFlg; }					// 生存フラグ取得
+	float GetRadius() { return m_radius; }						// 半径取得
+	Math::Vector2 GetPos() { return m_pos; }					// 座標取得
+	ObjectType GetObjType() const { return m_objType; }			// オブジェクトタイプ取得
 
 protected:
 	virtual void Relese();										// 解放
@@ -53,6 +63,7 @@ protected:
 	Math::Matrix    m_transMat;						// 移動行列
 	Math::Matrix    m_rotasionMat;					// 移動行列
 	Math::Matrix    m_mat;							// 合成行列
+	float           m_radius		= 1.0f;			// 半径
 	float           m_scaleX		= 1.0f;			// 拡大率
 	float           m_speed			= 1.0f;			// 移動速度
 	bool			m_aliveFlg		= true;			// 生存フラグ

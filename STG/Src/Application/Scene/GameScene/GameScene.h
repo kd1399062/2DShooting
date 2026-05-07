@@ -4,6 +4,7 @@
 //==================== 前方宣言 ====================
 class C_BaseObject;
 class C_Player;
+class C_CollisionManager;
 
 class C_GameScene : public C_BaseScene
 {
@@ -36,5 +37,9 @@ private:
 	// 全オブジェクトを可変長配列で管理する
 	std::vector<std::shared_ptr<C_BaseObject>> m_objList;
 
+	// プレイヤー
 	std::shared_ptr<C_Player> m_player;
+
+	// 当たり判定
+	std::shared_ptr<C_CollisionManager> m_collision;
 };

@@ -20,6 +20,10 @@ void C_BaseObject::Draw()
 {
 }
 
+void C_BaseObject::OnHit()
+{
+}
+
 Math::Vector2 C_BaseObject::GetScroll()
 {
 	return Math::Vector2();

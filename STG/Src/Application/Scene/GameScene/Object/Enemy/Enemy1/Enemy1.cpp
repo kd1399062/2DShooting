@@ -10,6 +10,7 @@ void C_Enemy1::Init()
 	m_size		= { 64,64 };
 	m_pos		= { 100,0 };
 	m_speed		= 10;
+	m_radius = 32.0f;
 
 	// ˆÚ“®”ÍˆÍİ’è
 	m_posMax.x = MAP_WIDTH * 0.5 - m_size.x * 0.5;
@@ -55,6 +56,11 @@ void C_Enemy1::Draw()
 {
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, 64, 64), 1.0f);
+}
+
+void C_Enemy1::OnHit()
+{
+	m_aliveFlg = false;
 }
 
 void C_Enemy1::Relese()

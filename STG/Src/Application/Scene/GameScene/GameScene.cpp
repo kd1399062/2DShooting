@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "../SceneManager.h"
+#include "Collision/CollisionManager.h"
 #include "Object/Back/Back.h"
 #include "Object/Player/Player.h"
 #include "Object/Enemy/Enemy1/Enemy1.h"
@@ -7,6 +8,10 @@
 
 void C_GameScene::Init()
 {
+	// “–‚½‚è”»’è
+	m_collision = std::make_shared<C_CollisionManager>();
+	m_collision->SetOwner(this);
+
 	// ”wŒi
 	std::shared_ptr<C_Back> m_back;
 	m_back = std::make_shared<C_Back>();
@@ -63,6 +68,11 @@ void C_GameScene::Update()
 		m_objList[i]->Update(m_player->GetScroll());
 		m_objList[i]->Update();
 	}
+
+
+
+
+	m_collision->Update();
 
 	// Z‚Åƒ^ƒCƒgƒ‹ƒV[ƒ“‚Ö‘JˆÚ
 	if (GetAsyncKeyState('Z') & 0x8000)

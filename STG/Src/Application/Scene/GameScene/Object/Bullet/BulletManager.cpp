@@ -23,10 +23,10 @@ void C_BulletManager::Update()
     {
         if (m_bullets[i])
         {
-            m_bullets[i]->Update();
+            //m_bullets[i]->Update();
 
             // Ž€‚ñ‚¾’e‚ðíœ
-            if (!m_bullets[i]->IsAlive())
+            if (!m_bullets[i]->GetAliveFlg())
             {
                 m_bullets[i] = nullptr;
             }

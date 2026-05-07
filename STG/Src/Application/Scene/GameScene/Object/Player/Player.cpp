@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "../Bullet/BulletManager.h"
 #include "../Bullet/Bullet.h"
 #include "../../../../main.h"
 #include "../../../../Scene/GameScene/GameScene.h"
@@ -18,6 +17,7 @@ void C_Player::Init()
 	m_speed			= 10.0f;
 	m_shotCoolMax	= 3;
 	m_shotCool		= m_shotCoolMax;
+	m_radius		= 32.0f;
 
 	
 	// 移動範囲設定
@@ -69,6 +69,15 @@ void C_Player::Update(Math::Vector2 scroll)
 	if (m_pos.y > m_posMax.y) m_pos.y = m_posMax.y;
 	if (m_pos.y < m_posMin.y) m_pos.y = m_posMin.y;
 
+	//==================== スクロール値計算 ====================
+	m_scroll = m_pos;
+
+	// スクロール範囲制限
+	if (m_scroll.x < m_scrollMin.x) m_scroll.x = m_scrollMin.x;
+	if (m_scroll.x > m_scrollMax.x)m_scroll.x = m_scrollMax.x;
+	if (m_scroll.y < m_scrollMin.y) m_scroll.y = m_scrollMin.y;
+	if (m_scroll.y > m_scrollMax.y)m_scroll.y = m_scrollMax.y;
+
 	//==================== 弾発射処理 ====================
 	ShotCoolTime();
 
@@ -87,21 +96,12 @@ void C_Player::Update(Math::Vector2 scroll)
 
 			std::shared_ptr<C_Bullet> bullet;
 			bullet = std::make_shared<C_Bullet>();	// ①生成
-			bullet->Init(m_pos - m_scroll, m_shotDir); // ②初期化
+			bullet->Init(m_pos, m_shotDir); // ②初期化
 			m_owner->AddObject(bullet);				// ④シーンのオブジェクトリストへ追加
 		}
 
 	}
 
-	//==================== スクロール値計算 ====================
-	m_scroll = m_pos;
-
-	if (m_scroll.x < m_scrollMin.x) m_scroll.x = m_scrollMin.x;
-	if (m_scroll.x > m_scrollMax.x)m_scroll.x = m_scrollMax.x;
-	if (m_scroll.y < m_scrollMin.y) m_scroll.y = m_scrollMin.y;
-	if (m_scroll.y > m_scrollMax.y)m_scroll.y = m_scrollMax.y;
-
-	
 	//==================== 行列 ====================
 	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);
 	m_transMat = Math::Matrix::CreateTranslation(m_pos.x - scroll.x, m_pos.y - scroll.y, 0);
@@ -113,6 +113,10 @@ void C_Player::Draw()
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, 64, 64), 1.0f);
 
+}
+
+void C_Player::OnHit()
+{
 }
 
 void C_Player::Relese()
