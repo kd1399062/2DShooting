@@ -70,7 +70,7 @@ protected:
 	Math::Matrix    m_transMat;						// ˆÚ“®s—ñ
 	Math::Matrix    m_rotasionMat;					// ˆÚ“®s—ñ
 	Math::Matrix    m_mat;							// ‡¬s—ñ
-	Math::Vector2	m_shotDir		= { 0,0 };		// ’e”­Ë•ûŒü
+	Math::Vector2	m_shotDir		= { 1,1 };		// ’e”­Ë•ûŒü
 	float           m_radius		= 1.0f;			// ”¼Œa
 	float           m_scaleX		= 1.0f;			// Šg‘å—¦
 	float           m_speed			= 1.0f;			// ˆÚ“®‘¬“x

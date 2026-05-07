@@ -39,7 +39,21 @@ void C_Bullet::Init(Math::Vector2 pos, Math::Vector2 dir, ObjectType obj)
 
 void C_Bullet::Update(Math::Vector2 scroll)
 {
-	m_pos += m_dir * m_speed;
+	switch (m_objType)
+	{
+	case ObjectType::PBullet:
+		m_pos += m_dir * m_speed;
+		break;
+	case ObjectType::E1Bullet:
+		m_pos += m_dir * m_speed;
+		break;
+	case ObjectType::E2Bullet:
+		m_pos += m_dir * m_speed;
+		break;
+	case ObjectType::E3Bullet:
+		m_pos += m_dir * m_speed;
+		break;
+	}
 
 	m_aliveTime--;
 

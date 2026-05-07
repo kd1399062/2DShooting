@@ -54,11 +54,24 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 
 	if (m_shotCool == m_shotCoolMax)
 	{
+		// プレイヤー座標取得
+		auto& list = m_owner->GetObjList();
+		for (size_t i = 0; i < list.size(); i++)
+		{
+			auto& player = list[i];
+
+			if (player->GetObjType() == C_BaseObject::ObjectType::Player)
+			{
+				m_shotDir = player->GetPos() - m_pos;
+				m_shotDir.Normalize();
+				break;
+			}
+		}
+
 		std::shared_ptr<C_Bullet> bullet;
 		bullet = std::make_shared<C_Bullet>();
 		bullet->Init(m_pos, m_shotDir, m_objType);
 		m_owner->AddObject(bullet);
-
 	}
 
 
