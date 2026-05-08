@@ -6,6 +6,8 @@ class C_CollisionManager;
 class C_BaseObject;
 class C_Player;
 class C_Enemy1;
+class C_Enemy2;
+class C_Enemy3;
 
 
 class C_GameScene : public C_BaseScene
@@ -39,9 +41,11 @@ private:
 	// 全オブジェクトを可変長配列で管理する
 	std::vector<std::shared_ptr<C_BaseObject>> m_objList;
 
-	// プレイヤー
+	// owner必要なオブジェクト
 	std::shared_ptr<C_Player> m_player;
 	std::shared_ptr<C_Enemy1> m_enemy1;
+	std::shared_ptr<C_Enemy2> m_enemy2;
+	std::shared_ptr<C_Enemy3> m_enemy3;
 
 	// 当たり判定
 	std::shared_ptr<C_CollisionManager> m_collision;

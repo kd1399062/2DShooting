@@ -4,6 +4,8 @@
 #include "Object/Back/Back.h"
 #include "Object/Player/Player.h"
 #include "Object/Enemy/Enemy1/Enemy1.h"
+#include "Object/Enemy/Enemy2/Enemy2.h"
+#include "Object/Enemy/Enemy3/Enemy3.h"
 #include "Object/Bullet/Bullet.h"
 
 void C_GameScene::Init()
@@ -24,11 +26,23 @@ void C_GameScene::Init()
 	m_player->SetOwner(this);
 	m_objList.push_back(m_player);
 
-	// “G‚P
+	// “G1
 	m_enemy1 = std::make_shared<C_Enemy1>();
 	m_enemy1->Init();
 	m_enemy1->SetOwner(this);
 	m_objList.push_back(m_enemy1);
+
+	// “G2
+	m_enemy2 = std::make_shared<C_Enemy2>();
+	m_enemy2->Init();
+	m_enemy2->SetOwner(this);
+	m_objList.push_back(m_enemy2);
+
+	// “G3
+	m_enemy3 = std::make_shared<C_Enemy3>();
+	m_enemy3->Init();
+	m_enemy3->SetOwner(this);
+	m_objList.push_back(m_enemy3);
 	
 }
 
@@ -69,9 +83,7 @@ void C_GameScene::Update()
 		m_objList[i]->Update();
 	}
 
-
-
-
+	// “–‚½‚è”»’èXV
 	m_collision->Update();
 
 	// Z‚Åƒ^ƒCƒgƒ‹ƒV[ƒ“‚Ö‘JˆÚ

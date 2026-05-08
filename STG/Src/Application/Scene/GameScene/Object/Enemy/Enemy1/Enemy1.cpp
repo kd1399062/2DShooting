@@ -9,7 +9,7 @@ void C_Enemy1::Init()
 	m_objType   = ObjectType::Enemy1;
 	m_aliveFlg	= true;
 	m_size		= { 64,64 };
-	m_pos		= { 100,0 };
+	m_pos		= { 0,100 };
 	m_speed		= 10;
 	m_radius = 32.0f;
 	m_shotCoolMax = 3;
@@ -58,11 +58,11 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 		auto& list = m_owner->GetObjList();
 		for (size_t i = 0; i < list.size(); i++)
 		{
-			auto& player = list[i];
+			auto& obj = list[i];
 
-			if (player->GetObjType() == C_BaseObject::ObjectType::Player)
+			if (obj->GetObjType() == C_BaseObject::ObjectType::Player)
 			{
-				m_shotDir = player->GetPos() - m_pos;
+				m_shotDir = obj->GetPos() - m_pos;
 				m_shotDir.Normalize();
 				break;
 			}
@@ -84,7 +84,7 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 void C_Enemy1::Draw()
 {
 	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, 64, 64), 1.0f);
+	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_size.x, m_size.y), 1.0f);
 }
 
 void C_Enemy1::OnHit()
