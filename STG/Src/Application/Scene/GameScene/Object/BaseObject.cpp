@@ -24,6 +24,18 @@ void C_BaseObject::OnHit()
 {
 }
 
+void C_BaseObject::OnHit(int damage)
+{
+}
+
+void C_BaseObject::Damage(int damage)
+{
+}
+
+void C_BaseObject::Dead()
+{
+}
+
 Math::Vector2 C_BaseObject::GetScroll()
 {
 	return Math::Vector2();

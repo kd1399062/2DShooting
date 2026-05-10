@@ -35,7 +35,7 @@ void C_CollisionManager::Update()
 					if (v.Length() < rad)
 					{
 						// HITŽž‚Ìˆ—
-						a->OnHit();
+						a->OnHit(5);
 						b->OnHit();
 					}
 				}

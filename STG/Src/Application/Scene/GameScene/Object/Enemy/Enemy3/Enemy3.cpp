@@ -8,6 +8,8 @@ void C_Enemy3::Init()
 
 	m_objType = ObjectType::Enemy3;
 	m_aliveFlg = true;
+	m_maxHp = 10;
+	m_hp = m_maxHp;
 	m_size = { 64,64 };
 	m_pos = { 0,-300};
 	m_speed = 10;
@@ -88,6 +90,29 @@ void C_Enemy3::Draw()
 }
 
 void C_Enemy3::OnHit()
+{
+	m_aliveFlg = false;
+}
+
+void C_Enemy3::OnHit(int damage)
+{
+	Damage(damage);
+}
+
+void C_Enemy3::Damage(int damage)
+{
+	// ƒ_ƒ[ƒWˆ—
+	m_hp -= damage;
+
+	// €–Sˆ—
+	if (m_hp <= 0)
+	{
+		m_hp = 0;
+		Dead();
+	}
+}
+
+void C_Enemy3::Dead()
 {
 	m_aliveFlg = false;
 }

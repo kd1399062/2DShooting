@@ -21,7 +21,6 @@ public:
 		E3Bullet,	// 敵3弾
 	};
 
-
 	C_BaseObject() {}
 	virtual ~C_BaseObject() { Relese(); }
 
@@ -31,6 +30,9 @@ public:
 	virtual void Update(Math::Vector2 scroll);									// スクロール込み更新
 	virtual void Draw();														// 描画
 	virtual void OnHit();														// 当たり判定処理
+	virtual void OnHit(int damage);
+	virtual void Damage(int damage);
+	virtual void Dead();
 	virtual Math::Vector2 GetScroll();											// スクロール値取得
 	virtual void ShotCoolTime();												// 弾発射クールタイム計算
 
@@ -71,6 +73,10 @@ protected:
 	Math::Matrix    m_rotasionMat;					// 移動行列
 	Math::Matrix    m_mat;							// 合成行列
 	Math::Vector2	m_shotDir		= { 1,1 };		// 弾発射方向
+	int				m_hp			= 1;			// HP
+	int				m_maxHp			= 1;			// 最大HP
+	int				m_dmgCool		= 1;			// ダメージクールタイム
+	int				m_maxDmgCool	= 1;			// 最大ダメージクールタイム
 	float           m_radius		= 1.0f;			// 半径
 	float           m_scaleX		= 1.0f;			// 拡大率
 	float           m_speed			= 1.0f;			// 移動速度

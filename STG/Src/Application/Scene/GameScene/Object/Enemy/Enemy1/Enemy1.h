@@ -4,7 +4,7 @@
 class C_GameScene;
 
 // 行動遷移
-enum class EnemyState
+enum class Enemy1State
 {
 	Spawn,	// 出現
 	Search,	// 捜索
@@ -22,6 +22,9 @@ public:
 	void Update(Math::Vector2 scroll) override;			// 更新
 	void Draw() override;								// 描画
 	void OnHit() override;								// 当たり判定時の処理
+	void OnHit(int damage) override;					// 当たり判定時の処理
+	void Damage(int damage) override;					// ダメージ
+	void Dead() override;								// 死亡
 
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
 
@@ -30,17 +33,14 @@ private:
 
 	// ステート更新
 	float DisPlayerChk();								// プレイヤーとの距離判定	
-	void  StateChange(EnemyState next);					// ステート変更
-	void  SpawnUpdate();								
-	// 出現更新
+	void  StateChange(Enemy1State next);				// ステート変更
+	void  SpawnUpdate();								// 出現更新
 	void  SearchUpdate();								// 捜索更新
 	void  AttackUpdate();								// 攻撃更新
 	void  DeadUpdate();									// 死亡更新
 
-	C_GameScene* m_owner = nullptr;
-
 	int m_stateTimer = 0;								// ステートタイマー
-	EnemyState m_state = EnemyState::Spawn;				// 現在のステート
+	Enemy1State m_state = Enemy1State::Spawn;			// 現在のステート
 	Math::Vector2 m_searchDir = { 0,0 };				// search時の移動方向
 
 	bool i = true;	// 仮移動フラグ

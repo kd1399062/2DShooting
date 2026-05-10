@@ -7,14 +7,18 @@ void C_Enemy1::Init()
 {
 	m_tex.Load("Texture/Enemy/Enemy1.png");
 
-	m_objType   = ObjectType::Enemy1;
-	m_aliveFlg	= true;
-	m_size		= { 64,64 };
-	m_pos		= { 0,100 };
-	m_speed		= 10;
-	m_radius = 32.0f;
-	m_shotCoolMax = 3;
-	m_shotCool = m_shotCoolMax;
+	m_objType		= ObjectType::Enemy1;
+	m_aliveFlg		= true;
+	m_maxHp			= 10;
+	m_hp			= m_maxHp;
+	m_size			= { 64,64 };
+	m_pos			= { 0,100 };
+	m_speed			= 10;
+	m_radius		= 32.0f;
+	m_maxDmgCool	= 10;
+	m_dmgCool		= m_maxDmgCool;
+	m_shotCoolMax	= 3;
+	m_shotCool		= m_shotCoolMax;
 
 	// 移動範囲設定
 	m_posMax.x = MAP_WIDTH * 0.5 - m_size.x * 0.5;
@@ -28,21 +32,28 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 	// 移動量初期化
 	m_move = { 0,0 };
 
+	//==================== ダメージクールタイム処理 ====================
+	if (m_dmgCool > 0)
+	{
+		m_dmgCool--;
+	}
+	
+	//==================== ステート更新 ====================
 	switch (m_state)
 	{
-	case EnemyState::Spawn:
+	case Enemy1State::Spawn:
 		SpawnUpdate();
 		break;
 
-	case EnemyState::Search:
+	case Enemy1State::Search:
 		SearchUpdate();
 		break;
 
-	case EnemyState::Attack:
+	case Enemy1State::Attack:
 		AttackUpdate();
 		break;
 
-	case EnemyState::Dead:
+	case Enemy1State::Dead:
 		DeadUpdate();
 		break;
 	}
@@ -76,6 +87,33 @@ void C_Enemy1::OnHit()
 	m_aliveFlg = false;
 }
 
+void C_Enemy1::OnHit(int damage)
+{
+	if (m_dmgCool > 0) return;
+
+	m_dmgCool = m_maxDmgCool;
+
+	Damage(damage);
+}
+
+void C_Enemy1::Damage(int damage)
+{
+	// ダメージ処理
+	m_hp -= damage;
+
+	// 死亡処理
+	if (m_hp <= 0)
+	{
+		m_hp = 0;
+		Dead();
+	}
+}
+
+void C_Enemy1::Dead()
+{
+	m_aliveFlg = false;
+}
+
 void C_Enemy1::Relese()
 {
 }
@@ -99,7 +137,7 @@ float C_Enemy1::DisPlayerChk()
 	return 99999.0f;
 }
 
-void C_Enemy1::StateChange(EnemyState next)
+void C_Enemy1::StateChange(Enemy1State next)
 {
 	m_state = next;
 	m_stateTimer = 0;
@@ -114,7 +152,7 @@ void C_Enemy1::SpawnUpdate()
 	else
 	{
 		// 捜索ステートに遷移
-		StateChange(EnemyState::Search);
+		StateChange(Enemy1State::Search);
 	}
 }
 
@@ -146,9 +184,9 @@ void C_Enemy1::SearchUpdate()
 
 	//==================== ステート遷移処理 ====================
 	// プレイヤーが近づくと攻撃ステートに遷移
-	if (DisPlayerChk() < 600.0f)
+	if (DisPlayerChk() < 500.0f)
 	{
-		m_state = EnemyState::Attack;
+		m_state = Enemy1State::Attack;
 	}
 }
 
@@ -190,9 +228,9 @@ void C_Enemy1::AttackUpdate()
 
 	//==================== ステート遷移処理 ====================
 	// プレイヤーが離れると捜索ステートに遷移
-	if (DisPlayerChk() >= 600.0f)
+	if (DisPlayerChk() >= 500.0f)
 	{
-		m_state = EnemyState::Search;
+		m_state = Enemy1State::Search;
 	}
 }
 

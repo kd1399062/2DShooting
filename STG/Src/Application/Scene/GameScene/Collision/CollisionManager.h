@@ -18,4 +18,5 @@ private:
 	void Relese();	// ‰ð•ú
 
 	C_GameScene* m_owner = nullptr;
+
 };
