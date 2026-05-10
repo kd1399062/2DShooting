@@ -11,8 +11,8 @@ void C_Enemy2::Init()
 	m_size = { 96,96 };
 	m_pos = { 0,300};
 	m_speed = 10;
-	m_radius = 32.0f;
-	m_shotCoolMax = 3;
+	m_radius = 48.0f;
+	m_shotCoolMax = 40;
 	m_shotCool = m_shotCoolMax;
 
 	// 移動範囲設定
@@ -68,10 +68,43 @@ void C_Enemy2::Update(Math::Vector2 scroll)
 			}
 		}
 
-		std::shared_ptr<C_Bullet> bullet;
-		bullet = std::make_shared<C_Bullet>();
-		bullet->Init(m_pos, m_shotDir, m_objType);
-		m_owner->AddObject(bullet);
+		// 真ん中
+		Math::Vector2 centerDir = m_shotDir;
+
+		// 左右方向作成
+		Math::Vector2 leftDir;
+		Math::Vector2 rightDir;
+
+		// 左右弾の角度をラジアンに変更
+		float angle = 15.0f * 3.141592f / 180.0f;
+
+		// 左回転
+		leftDir.x = centerDir.x * cosf(-angle) - centerDir.y * sinf(-angle);
+		leftDir.y = centerDir.x * sinf(-angle) + centerDir.y * cosf(-angle);
+
+		// 右回転
+		rightDir.x = centerDir.x * cosf(angle) - centerDir.y * sinf(angle);
+		rightDir.y = centerDir.x * sinf(angle) + centerDir.y * cosf(angle);
+
+		//==================== 弾生成 ====================
+
+		// 真ん中
+		std::shared_ptr<C_Bullet> bulletCenter;
+		bulletCenter = std::make_shared<C_Bullet>();
+		bulletCenter->Init(m_pos, centerDir, m_objType);
+		m_owner->AddObject(bulletCenter);
+
+		// 左
+		std::shared_ptr<C_Bullet> bulletLeft;
+		bulletLeft = std::make_shared<C_Bullet>();
+		bulletLeft->Init(m_pos, leftDir, m_objType);
+		m_owner->AddObject(bulletLeft);
+
+		// 右
+		std::shared_ptr<C_Bullet> bulletRight;
+		bulletRight = std::make_shared<C_Bullet>();
+		bulletRight->Init(m_pos, rightDir, m_objType);
+		m_owner->AddObject(bulletRight);
 	}
 
 

@@ -25,8 +25,9 @@ void C_Bullet::Init(Math::Vector2 pos, Math::Vector2 dir, ObjectType obj)
 	case ObjectType::Enemy2:
 		m_tex.Load("Texture/Bullet/e2Bullet.png");
 		m_objType = ObjectType::E2Bullet;
-		m_speed = 20;
+		m_speed = 7;
 		m_radius = 16.0f;
+		m_aliveTime = 50;
 		break;
 	case ObjectType::Enemy3:
 		m_tex.Load("Texture/Bullet/e3Bullet.png");
@@ -72,7 +73,7 @@ void C_Bullet::Update(Math::Vector2 scroll)
 void C_Bullet::Draw()
 {
 	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, 32, 32), 1.0f);
+	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_radius * 2, m_radius * 2), 1.0f);
 }
 
 void C_Bullet::OnHit()
