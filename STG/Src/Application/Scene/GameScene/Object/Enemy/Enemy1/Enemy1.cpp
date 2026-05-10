@@ -25,7 +25,6 @@ void C_Enemy1::Init()
 
 void C_Enemy1::Update(Math::Vector2 scroll)
 {
-	//==================== 移動処理 ====================
 	// 移動量初期化
 	m_move = { 0,0 };
 
@@ -48,7 +47,7 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 		break;
 	}
 
-	
+	//==================== 移動処理 ====================
 	// 座標確定
 	m_pos += m_move;
 
@@ -58,30 +57,6 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 	if (m_pos.y >= m_posMax.y) m_pos.y = m_posMax.y;
 	if (m_pos.y <= m_posMin.y) m_pos.y = m_posMin.y;
 
-	////==================== 弾発射処理 ====================
-	//ShotCoolTime();
-
-	//if (m_shotCool == m_shotCoolMax)
-	//{
-	//	// プレイヤー座標取得
-	//	auto& list = m_owner->GetObjList();
-	//	for (size_t i = 0; i < list.size(); i++)
-	//	{
-	//		auto& obj = list[i];
-
-	//		if (obj->GetObjType() == C_BaseObject::ObjectType::Player)
-	//		{
-	//			m_shotDir = obj->GetPos() - m_pos;
-	//			m_shotDir.Normalize();
-	//			break;
-	//		}
-	//	}
-
-	//	std::shared_ptr<C_Bullet> bullet;
-	//	bullet = std::make_shared<C_Bullet>();
-	//	bullet->Init(m_pos, m_shotDir, m_objType);
-	//	m_owner->AddObject(bullet);
-	//}
 
 
 	//==================== 行列 ====================
@@ -150,15 +125,16 @@ void C_Enemy1::SearchUpdate()
 	if (m_pos.x <= m_posMin.x) i = false;
 	if (i)
 	{
-		m_move.x -= m_speed;
+		//m_move.x -= m_speed;
 	}
 	else
 	{
-		m_move.x += m_speed;
+		//m_move.x += m_speed;
 	}
 
+	//==================== ステート遷移処理 ====================
 	// プレイヤーが近づくと攻撃ステートに遷移
-	if (DisPlayerChk() < 300.0f)
+	if (DisPlayerChk() < 800.0f)
 	{
 		m_state = EnemyState::Attack;
 	}
@@ -166,33 +142,38 @@ void C_Enemy1::SearchUpdate()
 
 void C_Enemy1::AttackUpdate()
 {
-	//==================== 弾発射処理 ====================
 	ShotCoolTime();
 
+	// プレイヤー座標取得
+	auto& list = m_owner->GetObjList();
+	for (size_t i = 0; i < list.size(); i++)
+	{
+		auto& obj = list[i];
+
+		if (obj->GetObjType() == C_BaseObject::ObjectType::Player)
+		{
+			m_shotDir = obj->GetPos() - m_pos;
+			m_shotDir.Normalize();
+			break;
+		}
+	}
+
+
+	m_move += (m_shotDir * 3);
+
+	//==================== 弾発射処理 ====================
 	if (m_shotCool == m_shotCoolMax)
 	{
-		// プレイヤー座標取得
-		auto& list = m_owner->GetObjList();
-		for (size_t i = 0; i < list.size(); i++)
-		{
-			auto& obj = list[i];
-
-			if (obj->GetObjType() == C_BaseObject::ObjectType::Player)
-			{
-				m_shotDir = obj->GetPos() - m_pos;
-				m_shotDir.Normalize();
-				break;
-			}
-		}
-
 		std::shared_ptr<C_Bullet> bullet;
 		bullet = std::make_shared<C_Bullet>();
 		bullet->Init(m_pos, m_shotDir, m_objType);
 		m_owner->AddObject(bullet);
 	}
 
+
+	//==================== ステート遷移処理 ====================
 	// プレイヤーが離れると捜索ステートに遷移
-	if (DisPlayerChk() >= 300.0f)
+	if (DisPlayerChk() >= 800.0f)
 	{
 		m_state = EnemyState::Search;
 	}
