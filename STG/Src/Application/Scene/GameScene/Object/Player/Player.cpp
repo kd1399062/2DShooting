@@ -9,15 +9,19 @@ void C_Player::Init()
 	m_tex.Load("Texture/Player/Player.png");
 
 	m_objType		= ObjectType::Player;
-	m_mouse.x		= 0;
-	m_mouse.y		= 0;
+	m_maxHp = 10;
+	m_hp = m_maxHp;
 	m_aliveFlg		= true;
 	m_size			= { 64,64 };
 	m_pos			= { 0,0 };
 	m_speed			= 10.0f;
+	m_maxDmgCool	= 10;
+	m_dmgCool		= 0;
 	m_shotCoolMax	= 3;
 	m_shotCool		= m_shotCoolMax;
 	m_radius		= 32.0f;
+	m_mouse.x = 0;
+	m_mouse.y = 0;
 
 	
 	// 移動範囲設定
@@ -37,6 +41,12 @@ void C_Player::Update(Math::Vector2 scroll)
 {
 	//マウス座標関数
 	GetMousePos(&m_mouse);
+
+	//==================== ダメージクールタイム処理 ====================
+	if (m_dmgCool > 0)
+	{
+		m_dmgCool--;
+	}
 
 	//==================== 移動処理 ====================
 	// 移動量初期化
@@ -115,8 +125,34 @@ void C_Player::Draw()
 
 }
 
-void C_Player::OnHit()
+void C_Player::OnHit(int damage)
 {
+	// 無敵時間が終わってないなら処理なし
+	if (m_dmgCool > 0) return;
+
+	// 無敵時間開始
+	m_dmgCool = m_maxDmgCool;
+
+	// ダメージ処理
+	Damage(damage);
+}
+
+void C_Player::Damage(int damage)
+{
+	// ダメージ処理
+	m_hp -= damage;
+
+	// 死亡処理
+	if (m_hp <= 0)
+	{
+		m_hp = 0;
+		Dead();
+	}
+}
+
+void C_Player::Dead()
+{
+	m_aliveFlg = false;
 }
 
 void C_Player::Relese()

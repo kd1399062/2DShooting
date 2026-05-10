@@ -20,8 +20,7 @@ void C_CollisionManager::Update()
 			Math::Vector2 v;	// ‘ÎÛ“¯Žm‚Ì‹——£
 			float rad = 0;		// ‘ÎÛ‚Ì”¼Œa‚Ì‡Œv
 
-			// “–‚½‚è”»’è
-
+			//==================== “–‚½‚è”»’è ====================
 			// ƒvƒŒƒCƒ„[’e‚ÆŠe“G‚Ì“–‚½‚è”»’è
 			if (b->GetObjType() == C_BaseObject::ObjectType::PBullet)
 			{
@@ -37,6 +36,25 @@ void C_CollisionManager::Update()
 						// HITŽž‚Ìˆ—
 						a->OnHit(5);
 						b->OnHit();
+					}
+				}
+			}
+
+			// ƒvƒŒƒCƒ„[‚ÆŠe“G’e‚Ì“–‚½‚è”»’è
+			if (a->GetObjType() == C_BaseObject::ObjectType::Player)
+			{
+				if (b->GetObjType() == C_BaseObject::ObjectType::E1Bullet ||
+					b->GetObjType() == C_BaseObject::ObjectType::E2Bullet ||
+					b->GetObjType() == C_BaseObject::ObjectType::E3Bullet)
+				{
+					v = b->GetPos() - a->GetPos();
+					rad = b->GetRadius() + a->GetRadius();
+
+					if (v.Length() < rad)
+					{
+						// HITŽž‚Ìˆ—
+						b->OnHit();
+						a->OnHit(5);
 					}
 				}
 			}

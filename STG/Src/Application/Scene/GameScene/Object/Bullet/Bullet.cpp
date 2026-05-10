@@ -80,6 +80,7 @@ void C_Bullet::Draw()
 
 void C_Bullet::OnHit()
 {
+	m_aliveFlg = false;
 }
 
 void C_Bullet::Relese()
