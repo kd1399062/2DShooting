@@ -41,6 +41,7 @@ private:
 
 	int m_stateTimer = 0;								// ステートタイマー
 	EnemyState m_state = EnemyState::Spawn;				// 現在のステート
+	Math::Vector2 m_searchDir = { 0,0 };				// search時の移動方向
 
 	bool i = true;	// 仮移動フラグ
 

@@ -120,21 +120,33 @@ void C_Enemy1::SpawnUpdate()
 
 void C_Enemy1::SearchUpdate()
 {
-	// 仮移動処理
-	if (m_pos.x >= m_posMax.x) i = true;
-	if (m_pos.x <= m_posMin.x) i = false;
-	if (i)
+	// タイマー減少
+	m_stateTimer--;
+
+	//==================== 移動処理 ====================
+	if (m_stateTimer <= 0)
 	{
-		//m_move.x -= m_speed;
+		// タイマーリセット
+		m_stateTimer = 45;
+
+		int randX = rand() % 3 - 1;
+		int randY = rand() % 3 - 1;
+
+		m_searchDir = { (float)randX, (float)randY };
+
+		// 正規化
+		if (m_searchDir.LengthSquared() > 0)
+		{
+			m_searchDir.Normalize();
+		}
 	}
-	else
-	{
-		//m_move.x += m_speed;
-	}
+
+	// 移動量確定
+	m_move = m_searchDir * 3.0f;
 
 	//==================== ステート遷移処理 ====================
 	// プレイヤーが近づくと攻撃ステートに遷移
-	if (DisPlayerChk() < 800.0f)
+	if (DisPlayerChk() < 600.0f)
 	{
 		m_state = EnemyState::Attack;
 	}
@@ -142,14 +154,14 @@ void C_Enemy1::SearchUpdate()
 
 void C_Enemy1::AttackUpdate()
 {
-	ShotCoolTime();
+	ShotCoolTime();		// 弾発射クールタイム計算
 
-	// プレイヤー座標取得
+	//==================== プレイヤー座標取得 ====================
 	auto& list = m_owner->GetObjList();
 	for (size_t i = 0; i < list.size(); i++)
 	{
 		auto& obj = list[i];
-
+	
 		if (obj->GetObjType() == C_BaseObject::ObjectType::Player)
 		{
 			m_shotDir = obj->GetPos() - m_pos;
@@ -157,9 +169,14 @@ void C_Enemy1::AttackUpdate()
 			break;
 		}
 	}
+	
+	//==================== 移動処理 ====================
+	// プレイヤーとの距離が300以上なら追従
+	if (DisPlayerChk() >= 300.0f)
+	{
+		m_move += (m_shotDir * 6.0f);
+	}
 
-
-	m_move += (m_shotDir * 3);
 
 	//==================== 弾発射処理 ====================
 	if (m_shotCool == m_shotCoolMax)
@@ -173,7 +190,7 @@ void C_Enemy1::AttackUpdate()
 
 	//==================== ステート遷移処理 ====================
 	// プレイヤーが離れると捜索ステートに遷移
-	if (DisPlayerChk() >= 800.0f)
+	if (DisPlayerChk() >= 600.0f)
 	{
 		m_state = EnemyState::Search;
 	}
