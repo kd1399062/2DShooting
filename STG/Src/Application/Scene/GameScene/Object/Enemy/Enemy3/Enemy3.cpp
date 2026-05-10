@@ -14,6 +14,8 @@ void C_Enemy3::Init()
 	m_pos = { 0,-300};
 	m_speed = 10;
 	m_radius = 32.0f;
+	m_maxDmgCool = 10;
+	m_dmgCool = m_maxDmgCool;
 	m_shotCoolMax = 3;
 	m_shotCool = m_shotCoolMax;
 
@@ -26,10 +28,16 @@ void C_Enemy3::Init()
 
 void C_Enemy3::Update(Math::Vector2 scroll)
 {
-	//==================== 移動処理 ====================
 	// 移動量初期化
 	m_move = { 0,0 };
 
+	//==================== ダメージクールタイム処理 ====================
+	if (m_dmgCool > 0)
+	{
+		m_dmgCool--;
+	}
+
+	//==================== ステート更新 ====================
 	// 仮移動処理
 	if (m_pos.x >= m_posMax.x) i = true;
 	if (m_pos.x <= m_posMin.x) i = false;
@@ -89,13 +97,15 @@ void C_Enemy3::Draw()
 	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_size.x, m_size.y), 1.0f);
 }
 
-void C_Enemy3::OnHit()
-{
-	m_aliveFlg = false;
-}
-
 void C_Enemy3::OnHit(int damage)
 {
+	// 無敵時間が終わってないなら処理なし
+	if (m_dmgCool > 0) return;
+
+	// 無敵時間開始
+	m_dmgCool = m_maxDmgCool;
+
+	// ダメージ処理
 	Damage(damage);
 }
 

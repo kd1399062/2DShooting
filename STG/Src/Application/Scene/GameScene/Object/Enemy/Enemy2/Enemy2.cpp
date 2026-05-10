@@ -15,6 +15,8 @@ void C_Enemy2::Init()
 	m_pos			= { 0,300};
 	m_speed			= 10;
 	m_radius		= 48.0f;
+	m_maxDmgCool = 10;
+	m_dmgCool = m_maxDmgCool;
 	m_shotCoolMax	= 40;
 	m_shotCool		= m_shotCoolMax;
 
@@ -30,6 +32,13 @@ void C_Enemy2::Update(Math::Vector2 scroll)
 	// 移動量初期化
 	m_move = { 0,0 };
 
+	//==================== ダメージクールタイム処理 ====================
+	if (m_dmgCool > 0)
+	{
+		m_dmgCool--;
+	}
+
+	//==================== ステート更新 ====================
 	switch (m_state)
 	{
 	case Enemy2State::Spawn:
@@ -71,13 +80,15 @@ void C_Enemy2::Draw()
 	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_size.x, m_size.y), 1.0f);
 }
 
-void C_Enemy2::OnHit()
-{
-	m_aliveFlg = false;
-}
-
 void C_Enemy2::OnHit(int damage)
 {
+	// 無敵時間が終わってないなら処理なし
+	if (m_dmgCool > 0) return;
+
+	// 無敵時間開始
+	m_dmgCool = m_maxDmgCool;
+
+	// ダメージ処理
 	Damage(damage);
 }
 

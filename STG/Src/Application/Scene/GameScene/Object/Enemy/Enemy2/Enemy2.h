@@ -21,7 +21,6 @@ public:
 	void Init() override;								// 初期化
 	void Update(Math::Vector2 scroll) override;			// 更新
 	void Draw() override;								// 描画
-	void OnHit() override;								// 当たり判定時の処理
 	void OnHit(int damage) override;					// 当たり判定時の処理
 	void Damage(int damage) override;					// ダメージ
 	void Dead() override;								// 死亡
