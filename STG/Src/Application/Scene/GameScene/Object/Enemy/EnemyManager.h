@@ -26,7 +26,7 @@ private:
 	C_GameScene* m_owner = nullptr;
 
 	// ìGëçó 
-	const int ENEMY1_MAX = 10;
-	const int ENEMY2_MAX = 5;
+	const int ENEMY1_MAX = 7;
+	const int ENEMY2_MAX = 3;
 	const int ENEMY3_MAX = 2;
 };

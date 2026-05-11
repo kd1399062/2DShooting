@@ -15,13 +15,14 @@ void C_Bullet::Init(Math::Vector2 pos, Math::Vector2 dir, ObjectType obj)
 		m_objType = ObjectType::PBullet;
 		m_speed = 20;
 		m_radius = 16.0f;
+		m_aliveTime = 50;
 		break;
 	case ObjectType::Enemy1:
 		m_tex.Load("Texture/Bullet/e1Bullet.png");
 		m_objType = ObjectType::E1Bullet;
-		m_speed = 20;
+		m_speed = 10;
 		m_radius = 16.0f;
-		m_aliveTime = 20;
+		m_aliveTime = 60;
 		break;
 	case ObjectType::Enemy2:
 		m_tex.Load("Texture/Bullet/e2Bullet.png");

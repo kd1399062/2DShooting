@@ -17,6 +17,13 @@ void C_CollisionManager::Update()
 		{
 			auto& a = list[i];	// 対象1
 			auto& b = list[j];	// 対象2
+
+			// nullチェック
+			if (!a || !b) continue;
+
+			// 死亡済みは無視
+			if (!a->GetAliveFlg() || !b->GetAliveFlg()) continue;
+
 			Math::Vector2 v;	// 対象同士の距離
 			float rad = 0;		// 対象の半径の合計
 
