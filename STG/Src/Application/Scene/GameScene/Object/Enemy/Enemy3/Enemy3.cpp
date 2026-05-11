@@ -1,6 +1,7 @@
 #include "Enemy3.h"
 #include "../../../../../Scene/GameScene/GameScene.h"
 #include "../../Bullet/Bullet.h"
+#include "../../Item/Energy/Energy.h"
 
 void C_Enemy3::Init()
 {
@@ -106,6 +107,12 @@ void C_Enemy3::Damage(int damage)
 
 void C_Enemy3::Dead()
 {
+	//==================== ”R—¿ƒhƒƒbƒv ====================
+	std::shared_ptr<C_Energy> energy;
+	energy = std::make_shared<C_Energy>();
+	energy->Init(m_pos, 10);
+	m_owner->AddObject(energy);
+
 	m_aliveFlg = false;
 }
 

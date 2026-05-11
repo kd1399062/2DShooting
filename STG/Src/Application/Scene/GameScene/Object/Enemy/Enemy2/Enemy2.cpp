@@ -2,6 +2,7 @@
 #include "../../../../../Scene/GameScene/GameScene.h"
 #include "../../../Object/Player/Player.h"
 #include "../../Bullet/Bullet.h"
+#include "../../Item/Energy/Energy.h"
 
 void C_Enemy2::Init()
 {
@@ -107,6 +108,12 @@ void C_Enemy2::Damage(int damage)
 
 void C_Enemy2::Dead()
 {
+	//==================== ”R—¿ƒhƒƒbƒv ====================
+	std::shared_ptr<C_Energy> energy;
+	energy = std::make_shared<C_Energy>();
+	energy->Init(m_pos, 20);
+	m_owner->AddObject(energy);
+
 	m_aliveFlg = false;
 }
 

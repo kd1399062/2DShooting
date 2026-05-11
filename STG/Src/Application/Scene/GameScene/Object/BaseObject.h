@@ -43,6 +43,9 @@ public:
 	Math::Vector2 GetPos() { return m_pos; }									// 座標取得
 	ObjectType GetObjType() const { return m_objType; }							// オブジェクトタイプ取得
 
+	virtual void SetEnergy(int energyNum);										// 燃料取得
+	virtual int  GetEnergy();													// 燃料取得
+
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }					// シーン情報をセット
 
 protected:
@@ -85,4 +88,5 @@ protected:
 	bool			m_aliveFlg		= true;			// 生存フラグ
 	int				m_shotCool		= 10;			// 弾発射クールタイム
 	int				m_shotCoolMax	= 10;			// 最大弾発射クールタイム
+	int				m_energy		= 0;			// 保持燃料
 };

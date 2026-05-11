@@ -20,6 +20,8 @@ public:
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
 	Math::Vector2 GetScroll() { return m_scroll; }				// スクロール値取得
 
+	void SetEnergy(int energyNum) override;
+
 
 private:
 	void Relese()	override;									// 解放処理

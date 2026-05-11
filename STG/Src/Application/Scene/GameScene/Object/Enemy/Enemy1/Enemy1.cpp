@@ -113,7 +113,7 @@ void C_Enemy1::Dead()
 	//==================== ”R—¿ƒhƒƒbƒv ====================
 	std::shared_ptr<C_Energy> energy;
 	energy = std::make_shared<C_Energy>();
-	energy->Init(m_pos, 10);
+	energy->Init(m_pos, 15);
 	m_owner->AddObject(energy);
 
 	m_aliveFlg = false;

@@ -53,6 +53,16 @@ void C_BaseObject::ShotCoolTime()
 	}
 }
 
+void C_BaseObject::SetEnergy(int energyNum)
+{
+	m_energy += energyNum;
+}
+
+int C_BaseObject::GetEnergy()
+{
+	return m_energy;
+}
+
 void C_BaseObject::Relese()
 {
 }

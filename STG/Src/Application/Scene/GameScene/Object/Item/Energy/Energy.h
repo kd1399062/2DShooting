@@ -17,7 +17,7 @@ public:
 
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
 
-	int GetEnergy();										// 燃料取得
+	int GetEnergy() override;	
 
 private:
 	void Relese()	override;							// 解放処理

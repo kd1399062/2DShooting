@@ -9,8 +9,8 @@ void C_Player::Init()
 	m_tex.Load("Texture/Player/Player.png");
 
 	m_objType		= ObjectType::Player;
-	m_maxHp = 10;
-	m_hp = m_maxHp;
+	m_maxHp			= 10;
+	m_hp			= m_maxHp;
 	m_aliveFlg		= true;
 	m_size			= { 64,64 };
 	m_pos			= { 0,0 };
@@ -20,8 +20,9 @@ void C_Player::Init()
 	m_shotCoolMax	= 3;
 	m_shotCool		= m_shotCoolMax;
 	m_radius		= 32.0f;
-	m_mouse.x = 0;
-	m_mouse.y = 0;
+	m_mouse.x		= 0;
+	m_mouse.y		= 0;
+	m_energy		= 0;
 
 	
 	// ˆÚ“®”ÍˆÍÝ’è
@@ -165,6 +166,11 @@ void C_Player::GetMousePos(POINT* mousePos)
 	mousePos->x -= WINDOW_WIDTH / 2;
 	mousePos->y -= WINDOW_HIGHT / 2;
 	mousePos->y *= -1;
+}
+
+void C_Player::SetEnergy(int energyNum)
+{
+	m_energy += energyNum;
 }
 
 

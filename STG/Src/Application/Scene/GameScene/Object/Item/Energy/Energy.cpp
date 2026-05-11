@@ -9,7 +9,7 @@ void C_Energy::Init(Math::Vector2 pos, int energyNum)
 	m_radius = 16.0f;
 	m_size = { 32,32 };
 	m_pos = pos;
-
+	m_energy = energyNum;
 	m_speed = 10.0f;
 }
 

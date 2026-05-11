@@ -59,6 +59,22 @@ void C_CollisionManager::Update()
 				}
 			}
 
+			// ƒvƒŒƒCƒ„[‚Æ”R—¿‚Ì“–‚½‚è”»’è
+			if (a->GetObjType() == C_BaseObject::ObjectType::Player)
+			{
+				if (b->GetObjType() == C_BaseObject::ObjectType::Energy)
+				{
+					v = b->GetPos() - a->GetPos();
+					rad = b->GetRadius() + a->GetRadius();
+
+					if (v.Length() < rad)
+					{
+						// HITŽž‚Ìˆ—
+						a->SetEnergy(b->GetEnergy());
+						b->OnHit();
+					}
+				}
+			}
 		}
 	}
 }
