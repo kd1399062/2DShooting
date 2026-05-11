@@ -3,9 +3,7 @@
 #include "Collision/CollisionManager.h"
 #include "Object/Back/Back.h"
 #include "Object/Player/Player.h"
-#include "Object/Enemy/Enemy1/Enemy1.h"
-#include "Object/Enemy/Enemy2/Enemy2.h"
-#include "Object/Enemy/Enemy3/Enemy3.h"
+#include "Object/Enemy/EnemyManager.h"
 #include "Object/Bullet/Bullet.h"
 #include "Object/Rocket/Rocket.h"
 #include "Object/Item/Energy/Energy.h"
@@ -28,23 +26,10 @@ void C_GameScene::Init()
 	m_player->SetOwner(this);
 	m_objList.push_back(m_player);
 
-	// 敵1
-	m_enemy1 = std::make_shared<C_Enemy1>();
-	m_enemy1->Init();
-	m_enemy1->SetOwner(this);
-	m_objList.push_back(m_enemy1);
-
-	// 敵2
-	m_enemy2 = std::make_shared<C_Enemy2>();
-	m_enemy2->Init();
-	m_enemy2->SetOwner(this);
-	m_objList.push_back(m_enemy2);
-
-	// 敵3
-	m_enemy3 = std::make_shared<C_Enemy3>();
-	m_enemy3->Init();
-	m_enemy3->SetOwner(this);
-	m_objList.push_back(m_enemy3);
+	// 敵管理
+	m_enemyMng = std::make_shared<C_EnemyManager>();
+	m_enemyMng->SetOwner(this);
+	m_enemyMng->Init();
 
 	// ロケット
 	std::shared_ptr<C_Rocket> m_rocket;
@@ -84,6 +69,10 @@ void C_GameScene::Update()
 	}
 
 	//==================== 更新処理 ====================
+	// 敵管理更新
+	m_enemyMng->Update();
+
+	
 	// 全オブジェクトの更新
 	for (int i = 0;i < m_objList.size();i++)
 	{
@@ -91,6 +80,7 @@ void C_GameScene::Update()
 		m_objList[i]->Update();
 	}
 
+	//==================== 当たり判定処理 ====================
 	// 当たり判定更新
 	m_collision->Update();
 

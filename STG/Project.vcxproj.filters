@@ -228,6 +228,9 @@
     <ClInclude Include="Src\Application\Scene\GameScene\Object\Item\Energy\Energy.h">
       <Filter>Src\Application\Scene\GameScene\Object\Item\Energy</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Object\Enemy\EnemyManager.h">
+      <Filter>Src\Application\Scene\GameScene\Object\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\GameScene\Object\Item\Energy\Energy.cpp">
       <Filter>Src\Application\Scene\GameScene\Object\Item\Energy</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Object\Enemy\EnemyManager.cpp">
+      <Filter>Src\Application\Scene\GameScene\Object\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

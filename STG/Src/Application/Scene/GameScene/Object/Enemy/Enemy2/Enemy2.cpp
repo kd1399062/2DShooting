@@ -28,6 +28,30 @@ void C_Enemy2::Init()
 	m_posMin.y = MAP_HIGHT * 0.5 * (-1) + m_size.y * 0.5;
 }
 
+void C_Enemy2::EnemyInit(Math::Vector2 pos)
+{
+	m_tex.Load("Texture/Enemy/Enemy2.png");
+
+	m_objType = ObjectType::Enemy2;
+	m_aliveFlg = true;
+	m_maxHp = 10;
+	m_hp = m_maxHp;
+	m_size = { 96,96 };
+	m_pos = pos;
+	m_speed = 10;
+	m_radius = 48.0f;
+	m_maxDmgCool = 10;
+	m_dmgCool = m_maxDmgCool;
+	m_shotCoolMax = 40;
+	m_shotCool = m_shotCoolMax;
+
+	// à⁄ìÆîÕàÕê›íË
+	m_posMax.x = MAP_WIDTH * 0.5 - m_size.x * 0.5;
+	m_posMin.x = MAP_WIDTH * 0.5 * (-1) + m_size.x * 0.5;
+	m_posMax.y = MAP_HIGHT * 0.5 - m_size.y * 0.5;
+	m_posMin.y = MAP_HIGHT * 0.5 * (-1) + m_size.y * 0.5;
+}
+
 void C_Enemy2::Update(Math::Vector2 scroll)
 {
 	// à⁄ìÆó èâä˙âª

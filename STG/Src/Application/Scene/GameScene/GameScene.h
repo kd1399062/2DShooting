@@ -5,9 +5,7 @@
 class C_CollisionManager;
 class C_BaseObject;
 class C_Player;
-class C_Enemy1;
-class C_Enemy2;
-class C_Enemy3;
+class C_EnemyManager;
 
 
 class C_GameScene : public C_BaseScene
@@ -21,7 +19,7 @@ public:
 	void Update()	override;
 
 	// 全オブジェクトの情報を取得する
-	std::vector<std::shared_ptr<C_BaseObject>> GetObjList()
+	std::vector<std::shared_ptr<C_BaseObject>>& GetObjList()
 	{
 		return m_objList;
 	}
@@ -42,10 +40,8 @@ private:
 	std::vector<std::shared_ptr<C_BaseObject>> m_objList;
 
 	// owner必要なオブジェクト
-	std::shared_ptr<C_Player> m_player;
-	std::shared_ptr<C_Enemy1> m_enemy1;
-	std::shared_ptr<C_Enemy2> m_enemy2;
-	std::shared_ptr<C_Enemy3> m_enemy3;
+	std::shared_ptr<C_Player>		m_player;
+	std::shared_ptr<C_EnemyManager>	m_enemyMng;
 
 	// 当たり判定
 	std::shared_ptr<C_CollisionManager> m_collision;

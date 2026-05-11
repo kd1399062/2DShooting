@@ -27,6 +27,7 @@ public:
 	virtual ~C_BaseObject() { Relese(); }
 
 	virtual void Init();														// 初期化
+	virtual void EnemyInit(Math::Vector2 pos);									// 敵用初期化
 	virtual void Init(Math::Vector2 pos, Math::Vector2 dir, ObjectType obj);	// Bullet用初期化 (生成座標 発射方向 弾の種類)
 	virtual void Update();														// 更新
 	virtual void Update(Math::Vector2 scroll);									// スクロール込み更新

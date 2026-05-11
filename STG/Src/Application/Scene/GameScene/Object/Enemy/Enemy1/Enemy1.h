@@ -19,6 +19,7 @@ public:
 	~C_Enemy1() override { Relese(); }
 
 	void Init() override;								// ‰Šú‰»
+	void EnemyInit(Math::Vector2 pos) override;			// ‰Šú‰»
 	void Update(Math::Vector2 scroll) override;			// XV
 	void Draw() override;								// •`‰æ
 	void OnHit(int damage) override;					// “–‚½‚è”»’è‚Ìˆ—
