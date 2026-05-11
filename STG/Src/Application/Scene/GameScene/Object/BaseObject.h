@@ -19,6 +19,8 @@ public:
 		E1Bullet,	// “G1’e
 		E2Bullet,	// “G2’e
 		E3Bullet,	// “G3’e
+		Rocket,		// ƒƒPƒbƒg
+		Energy,		// ”R—¿
 	};
 
 	C_BaseObject() {}

@@ -7,6 +7,7 @@
 #include "Object/Enemy/Enemy2/Enemy2.h"
 #include "Object/Enemy/Enemy3/Enemy3.h"
 #include "Object/Bullet/Bullet.h"
+#include "Object/Rocket/Rocket.h"
 
 void C_GameScene::Init()
 {
@@ -43,6 +44,12 @@ void C_GameScene::Init()
 	m_enemy3->Init();
 	m_enemy3->SetOwner(this);
 	m_objList.push_back(m_enemy3);
+
+	// ƒƒPƒbƒg
+	std::shared_ptr<C_Rocket> m_rocket;
+	m_rocket = std::make_shared<C_Rocket>();
+	m_rocket->Init();
+	m_objList.push_back(m_rocket);
 	
 }
 

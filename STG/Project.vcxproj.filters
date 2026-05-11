@@ -79,6 +79,15 @@
     <Filter Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy3">
       <UniqueIdentifier>{80418d55-295b-4cb4-80a8-a7ff8b346056}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Object\Rocket">
+      <UniqueIdentifier>{98dfca35-087f-445f-aa51-7f03fa1bf3df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Object\Item">
+      <UniqueIdentifier>{c2cb42df-4da1-4348-a872-f6dca9faeb0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Object\Item\Energy">
+      <UniqueIdentifier>{bf0dfd9d-4ad3-4e13-9762-3bd2782347d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -213,6 +222,9 @@
     <ClInclude Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy3\Enemy3.h">
       <Filter>Src\Application\Scene\GameScene\Object\Enemy\Enemy3</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Object\Rocket\Rocket.h">
+      <Filter>Src\Application\Scene\GameScene\Object\Rocket</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -317,6 +329,12 @@
     <ClCompile Include="Src\Application\Scene\GameScene\Object\Enemy\Enemy3\Enemy3.cpp">
       <Filter>Src\Application\Scene\GameScene\Object\Enemy\Enemy3</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Object\Rocket\Rocket.cpp">
+      <Filter>Src\Application\Scene\GameScene\Object\Rocket</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Object\Item\Energy\Energy.cpp">
+      <Filter>Src\Application\Scene\GameScene\Object\Item\Energy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="説明.txt" />
@@ -333,6 +351,9 @@
     </None>
     <None Include="Src\System\Shader\StandardShader\inc_KdStandardShader.hlsli">
       <Filter>Src\System\Shader\StandardShader</Filter>
+    </None>
+    <None Include="Src\Application\Scene\GameScene\Object\Item\Energy\Energy.g">
+      <Filter>Src\Application\Scene\GameScene\Object\Item\Energy</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

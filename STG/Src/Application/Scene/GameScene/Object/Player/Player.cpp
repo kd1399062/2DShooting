@@ -121,8 +121,7 @@ void C_Player::Update(Math::Vector2 scroll)
 void C_Player::Draw()
 {
 	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, 64, 64), 1.0f);
-
+	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_size.x, m_size.y), 1.0f);
 }
 
 void C_Player::OnHit(int damage)
@@ -134,7 +133,7 @@ void C_Player::OnHit(int damage)
 	m_dmgCool = m_maxDmgCool;
 
 	// É_ÉÅÅ[ÉWèàóù
-	Damage(damage);
+	//Damage(damage);
 }
 
 void C_Player::Damage(int damage)
