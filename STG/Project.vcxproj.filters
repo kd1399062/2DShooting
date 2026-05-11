@@ -225,6 +225,9 @@
     <ClInclude Include="Src\Application\Scene\GameScene\Object\Rocket\Rocket.h">
       <Filter>Src\Application\Scene\GameScene\Object\Rocket</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Object\Item\Energy\Energy.h">
+      <Filter>Src\Application\Scene\GameScene\Object\Item\Energy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -351,9 +354,6 @@
     </None>
     <None Include="Src\System\Shader\StandardShader\inc_KdStandardShader.hlsli">
       <Filter>Src\System\Shader\StandardShader</Filter>
-    </None>
-    <None Include="Src\Application\Scene\GameScene\Object\Item\Energy\Energy.g">
-      <Filter>Src\Application\Scene\GameScene\Object\Item\Energy</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@
 #include "Object/Enemy/Enemy3/Enemy3.h"
 #include "Object/Bullet/Bullet.h"
 #include "Object/Rocket/Rocket.h"
+#include "Object/Item/Energy/Energy.h"
 
 void C_GameScene::Init()
 {
@@ -50,7 +51,7 @@ void C_GameScene::Init()
 	m_rocket = std::make_shared<C_Rocket>();
 	m_rocket->Init();
 	m_objList.push_back(m_rocket);
-	
+
 }
 
 void C_GameScene::Draw()
