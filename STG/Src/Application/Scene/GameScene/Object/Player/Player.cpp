@@ -8,7 +8,7 @@ void C_Player::Init()
 	m_tex.Load("Texture/Player/Player.png");
 
 	m_objType		= ObjectType::Player;
-	m_maxHp			= 10;
+	m_maxHp			= 100;
 	m_hp			= m_maxHp;
 	m_aliveFlg		= true;
 	m_size			= { 64,64 };
@@ -46,6 +46,17 @@ void C_Player::Update(Math::Vector2 scroll)
 	if (m_energy <= 0)
 	{
 		m_aliveFlg = false;
+	}
+	
+	if (GetAsyncKeyState('G') & 0x8000)
+	{
+		m_hp-- ;
+	}
+
+	// HP最小値設定
+	if (m_hp < 0)
+	{
+		m_hp = 0;
 	}
 
 	//==================== ダメージクールタイム処理 ====================

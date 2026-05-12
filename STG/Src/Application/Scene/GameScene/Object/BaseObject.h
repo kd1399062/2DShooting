@@ -51,6 +51,10 @@ public:
 	virtual void AddCharge(int energy);
 	virtual void UseEnergy(int energy);
 
+	// HP取得
+	virtual float GetHp() { return (float)m_hp; }
+	virtual float GetMaxHp() { return (float)m_maxHp; }
+
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }					// シーン情報をセット
 
 protected:

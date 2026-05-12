@@ -31,7 +31,12 @@ private:
 	// HPバー
 	KdTexture		m_HpFrameTex;					// HPバー枠テクスチャ
 	KdTexture		m_HpTex;						// HPバーテクスチャ
-	Math::Matrix    m_HpMat;						// 合成行列
+	Math::Matrix    m_HpFrameMat;					// HPバー枠行列
+	Math::Matrix    m_HpMat;						// HPバー行列
 	Math::Vector2	m_HpSize		= { 96,24 };	// サイズ
 	Math::Vector2	m_HpPos			= { 100,100 };	// 座標
+	float m_hp = 0.0f;
+	float m_maxHp = 0.0f;
+	float m_hpRate = 0.0f;
+	float hpWidth = 0.0f;
 };
