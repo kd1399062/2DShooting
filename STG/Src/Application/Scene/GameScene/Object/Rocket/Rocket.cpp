@@ -10,14 +10,26 @@ void C_Rocket::Init()
 	m_size = { 128,128 };
 	m_maxHp = 10;
 	m_hp = m_maxHp;
-	m_pos = { 0,0 };
+	m_pos = { 0,-600 };
 	m_speed = 10.0f;
-	m_maxDmgCool = 10;
+	m_maxDmgCool = 120;
 	m_dmgCool = 0;
+	m_energy = 0;
 }
 
 void C_Rocket::Update(Math::Vector2 scroll)
 {
+	//==================== ダメージクールタイム処理 ====================
+	if (m_dmgCool > 0)
+	{
+		m_dmgCool--;
+	}
+
+	if (m_energy > 0)
+	{
+		m_aliveFlg = false;
+	}
+
 	//==================== 行列 ====================
 	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);
 	m_transMat = Math::Matrix::CreateTranslation(m_pos.x - scroll.x, m_pos.y - scroll.y, 0);
@@ -28,6 +40,25 @@ void C_Rocket::Draw()
 {
 	SHADER.m_spriteShader.SetMatrix(m_mat);
 	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_size.x, m_size.y), 1.0f);
+}
+
+void C_Rocket::AddCharge(int energy)
+{
+	m_energy += energy;
+
+	if (m_energy >= m_energyMax)
+	{
+		// 最大燃料数で固定
+		m_energy = m_energyMax;
+
+		// クリア
+		m_clearFlg = true;
+	}
+}
+
+bool C_Rocket::GetClearFlg()
+{
+	return m_clearFlg;
 }
 
 void C_Rocket::OnHit(int damage)

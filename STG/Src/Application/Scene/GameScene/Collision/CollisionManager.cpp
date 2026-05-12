@@ -82,6 +82,23 @@ void C_CollisionManager::Update()
 					}
 				}
 			}
+
+			// ƒvƒŒƒCƒ„[‚Æ”R—¿‚Ì“–‚½‚è”»’è
+			if (a->GetObjType() == C_BaseObject::ObjectType::Player)
+			{
+				if (b->GetObjType() == C_BaseObject::ObjectType::Rocket)
+				{
+					v = b->GetPos() - a->GetPos();
+					rad = b->GetRadius() + a->GetRadius();
+
+					if (v.Length() < rad)
+					{
+						// HITŽž‚Ìˆ—
+						b->AddCharge(a->GetEnergy());
+						a->UseEnergy(a->GetEnergy());
+					}
+				}
+			}
 		}
 	}
 }

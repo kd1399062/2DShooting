@@ -67,6 +67,14 @@ int C_BaseObject::GetEnergy()
 	return m_energy;
 }
 
+void C_BaseObject::AddCharge(int energy)
+{
+}
+
+void C_BaseObject::UseEnergy(int energy)
+{
+}
+
 void C_BaseObject::Relese()
 {
 }

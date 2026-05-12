@@ -47,6 +47,10 @@ public:
 	virtual void SetEnergy(int energyNum);										// 燃料取得
 	virtual int  GetEnergy();													// 燃料取得
 
+	// 燃料チャージ
+	virtual void AddCharge(int energy);
+	virtual void UseEnergy(int energy);
+
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }					// シーン情報をセット
 
 protected:
