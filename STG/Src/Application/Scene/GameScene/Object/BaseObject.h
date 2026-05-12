@@ -40,7 +40,7 @@ public:
 	virtual void ShotCoolTime();												// 弾発射クールタイム計算
 
 	bool GetAliveFlg() { return m_aliveFlg; }									// 生存フラグ取得
-	float GetRadius() { return m_radius; }										// 半径取得
+	virtual float GetRadius() { return m_radius; }										// 半径取得
 	Math::Vector2 GetPos() { return m_pos; }									// 座標取得
 	ObjectType GetObjType() const { return m_objType; }							// オブジェクトタイプ取得
 

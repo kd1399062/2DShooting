@@ -99,6 +99,25 @@ void C_CollisionManager::Update()
 					}
 				}
 			}
+
+			// ƒƒPƒbƒg‚ÆŠe“G’e‚Ì“–‚½‚è”»’è
+			if (a->GetObjType() == C_BaseObject::ObjectType::Rocket)
+			{
+				if (b->GetObjType() == C_BaseObject::ObjectType::E1Bullet ||
+					b->GetObjType() == C_BaseObject::ObjectType::E2Bullet ||
+					b->GetObjType() == C_BaseObject::ObjectType::E3Bullet)
+				{
+					v = b->GetPos() - a->GetPos();
+					rad = b->GetRadius() + a->GetRadius();
+
+					if (v.Length() < rad)
+					{
+						// HITŽž‚Ìˆ—
+						b->OnHit();
+						a->OnHit(1);
+					}
+				}
+			}
 		}
 	}
 }

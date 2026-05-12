@@ -13,7 +13,7 @@ void C_Enemy3::EnemyInit(Math::Vector2 pos)
 	m_hp = m_maxHp;
 	m_size = { 64,64 };
 	m_pos = pos;
-	m_speed = 10;
+	m_speed = 3;
 	m_radius = 32.0f;
 	m_maxDmgCool = 10;
 	m_dmgCool = m_maxDmgCool;
@@ -24,7 +24,7 @@ void C_Enemy3::EnemyInit(Math::Vector2 pos)
 	m_posMax.x = MAP_WIDTH * 0.5 - m_size.x * 0.5;
 	m_posMin.x = MAP_WIDTH * 0.5 * (-1) + m_size.x * 0.5;
 	m_posMax.y = MAP_HIGHT * 0.5 - m_size.y * 0.5;
-	m_posMin.y = MAP_HIGHT * 0.5 * (-1) + m_size.y * 0.5;
+	m_posMin.y = (MAP_HIGHT - 240) * 0.5 * (-1) + m_size.y * 0.5;
 }
 
 void C_Enemy3::Update(Math::Vector2 scroll)

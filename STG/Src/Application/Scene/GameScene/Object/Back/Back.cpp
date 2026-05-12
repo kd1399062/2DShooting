@@ -2,7 +2,7 @@
 
 void C_Back::Init()
 {
-	m_tex.Load("Texture/Back/Back.png");
+	m_tex.Load("Texture/Back/Back1.png");
 
 	m_objType = ObjectType::Back;
 	m_aliveFlg = true;

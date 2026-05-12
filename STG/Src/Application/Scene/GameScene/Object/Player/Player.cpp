@@ -28,7 +28,7 @@ void C_Player::Init()
 	m_posMax.x = MAP_WIDTH * 0.5 - m_size.x * 0.5;
 	m_posMin.x = MAP_WIDTH * 0.5 * (-1) + m_size.x * 0.5;
 	m_posMax.y = MAP_HIGHT * 0.5 - m_size.y * 0.5;
-	m_posMin.y = MAP_HIGHT * 0.5 * (-1) + m_size.y * 0.5;
+	m_posMin.y = (MAP_HIGHT - 240) * 0.5 * (-1) + m_size.y * 0.5;
 
 	// スクロール範囲設定
 	m_scrollMax.x = WINDOW_WIDTH * 0.5;
@@ -47,16 +47,11 @@ void C_Player::Update(Math::Vector2 scroll)
 	{
 		m_aliveFlg = false;
 	}
-	
-	if (GetAsyncKeyState('G') & 0x8000)
-	{
-		m_hp-- ;
-	}
 
 	// HP最小値設定
-	if (m_hp < 0)
+	if (m_hp < 30)
 	{
-		m_hp = 0;
+		m_hp = 30;
 	}
 
 	//==================== ダメージクールタイム処理 ====================
@@ -150,7 +145,7 @@ void C_Player::OnHit(int damage)
 	m_dmgCool = m_maxDmgCool;
 
 	// ダメージ処理
-	//Damage(damage);
+	Damage(damage);
 }
 
 void C_Player::Damage(int damage)

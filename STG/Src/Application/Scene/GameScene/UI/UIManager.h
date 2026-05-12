@@ -39,4 +39,16 @@ private:
 	float m_maxHp = 0.0f;
 	float m_hpRate = 0.0f;
 	float hpWidth = 0.0f;
+
+	// ロケットHPバー
+	KdTexture		m_RHpFrameTex;					// HPバー枠テクスチャ
+	KdTexture		m_RHpTex;						// HPバーテクスチャ
+	Math::Matrix    m_RHpFrameMat;					// HPバー枠行列
+	Math::Matrix    m_RHpMat;						// HPバー行列
+	Math::Vector2	m_RHpSize = { 96,24 };	// サイズ
+	Math::Vector2	m_RHpPos = { 100,100 };	// 座標
+	float m_rhp = 0.0f;
+	float m_maxRHp = 0.0f;
+	float m_rhpRate = 0.0f;
+	float rhpWidth = 0.0f;
 };

@@ -2,27 +2,38 @@
 
 void C_Rocket::Init()
 {
-	m_tex.Load("Texture/Rocket/Rocket.png");
+	m_tex.Load("Texture/Rocket/Rocket1.png");
 
 	m_objType = ObjectType::Rocket;
 	m_aliveFlg = true;
-	m_radius = 64.0f;
-	m_size = { 128,128 };
-	m_maxHp = 10;
+	m_radius = 128.0f;
+	m_size = { 256,256 };
+	m_maxHp = 100;
 	m_hp = m_maxHp;
-	m_pos = { 0,-600 };
+	m_pos = { 0,-600+120 };
 	m_speed = 10.0f;
-	m_maxDmgCool = 120;
+	m_maxDmgCool = 10;
 	m_dmgCool = 0;
 	m_energy = 0;
 }
 
+
 void C_Rocket::Update(Math::Vector2 scroll)
 {
+	// HP最小値設定
+	if (m_hp < 30)
+	{
+		m_hp = 30;
+	}
+
 	//==================== ダメージクールタイム処理 ====================
 	if (m_dmgCool > 0)
 	{
 		m_dmgCool--;
+	}
+	if (m_dmgCool < 0)
+	{
+		m_dmgCool = 0;
 	}
 
 	if (m_energy > 0)

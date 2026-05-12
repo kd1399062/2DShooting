@@ -36,7 +36,7 @@ void C_Bullet::Init(Math::Vector2 pos, Math::Vector2 dir, ObjectType obj)
 		m_objType = ObjectType::E3Bullet;
 		m_speed = 10;
 		m_radius = 16.0f;
-		m_aliveTime = 40;
+		m_aliveTime = 50;
 		break;
 	}
 }
