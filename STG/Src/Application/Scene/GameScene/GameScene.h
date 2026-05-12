@@ -2,6 +2,7 @@
 #include "../BaseScene.h"
 
 //==================== 前方宣言 ====================
+class C_UIManager;
 class C_CollisionManager;
 class C_BaseObject;
 class C_Player;
@@ -36,6 +37,12 @@ private:
 
 	//==================== クラスポインタ宣言 ====================
 	// 
+	// UI
+	std::shared_ptr<C_UIManager> m_ui;
+
+	// 当たり判定
+	std::shared_ptr<C_CollisionManager> m_collision;
+
 	// 全オブジェクトを可変長配列で管理する
 	std::vector<std::shared_ptr<C_BaseObject>> m_objList;
 
@@ -43,6 +50,4 @@ private:
 	std::shared_ptr<C_Player>		m_player;
 	std::shared_ptr<C_EnemyManager>	m_enemyMng;
 
-	// 当たり判定
-	std::shared_ptr<C_CollisionManager> m_collision;
 };

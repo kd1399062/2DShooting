@@ -1,15 +1,32 @@
 #pragma once
 
+class C_GameScene;
+
 class C_UIManager
 {
 public:
+	C_UIManager() {}
+	~C_UIManager() {}
 
 	void Init();
 	void Draw();
 	void Update();
 	void Release();
 
+	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
+
 private:
-	C_UIManager() {}
-	~C_UIManager() {}
+	C_GameScene* m_owner = nullptr;
+
+	KdTexture		m_tex;					// テクスチャ
+	Math::Vector2	m_pos = { 0,0 };		// 座標
+	Math::Vector2	m_scroll = { 0,0 };		// スクロール量
+	Math::Vector2	m_move = { 0,0 };		// 移動量
+	Math::Vector2	m_dir = { 0,0 };		// 方向
+	Math::Vector2	m_size = { 0,0 };		// サイズ
+	Math::Matrix    m_scaleMat;				// 拡大行列
+	Math::Matrix    m_transMat;				// 移動行列
+	Math::Matrix    m_rotasionMat;			// 移動行列
+	Math::Matrix    m_mat;					// 合成行列
+	float           m_scaleX = 1.0f;			// 拡大率
 };

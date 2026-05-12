@@ -3,7 +3,6 @@
 #include "../../../../main.h"
 #include "../../../../Scene/GameScene/GameScene.h"
 
-
 void C_Player::Init()
 {
 	m_tex.Load("Texture/Player/Player.png");

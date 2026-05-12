@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "../SceneManager.h"
+#include "UI/UIManager.h"
 #include "Collision/CollisionManager.h"
 #include "Object/Back/Back.h"
 #include "Object/Player/Player.h"
@@ -10,6 +11,11 @@
 
 void C_GameScene::Init()
 {
+	// UI
+	m_ui = std::make_shared<C_UIManager>();
+	m_ui->SetOwner(this);
+	m_ui->Init();
+
 	// “–‚½‚è”»’è
 	m_collision = std::make_shared<C_CollisionManager>();
 	m_collision->SetOwner(this);
@@ -46,6 +52,9 @@ void C_GameScene::Draw()
 	{
 		m_objList[i]->Draw();
 	}
+
+	// UI
+	m_ui->Draw();
 }
 
 void C_GameScene::Update()
@@ -79,6 +88,9 @@ void C_GameScene::Update()
 		m_objList[i]->Update(m_player->GetScroll());
 		m_objList[i]->Update();
 	}
+
+	// UI
+	m_ui->Update();
 
 	//==================== “–‚½‚è”»’èˆ— ====================
 	// “–‚½‚è”»’èXV
