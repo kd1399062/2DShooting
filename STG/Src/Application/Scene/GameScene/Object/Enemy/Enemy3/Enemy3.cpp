@@ -176,7 +176,7 @@ void C_Enemy3::SearchUpdate()
 
 	//==================== 移動処理 ====================
 	// プレイヤーとの距離が500以上なら追従
-	if (DisPlayerChk() >= 500.0f)
+	if (DisPlayerChk() >= 600.0f)
 	{
 		m_move += (m_shotDir * 6.0f);
 	}
@@ -184,7 +184,7 @@ void C_Enemy3::SearchUpdate()
 
 	//==================== ステート遷移処理 ====================
 	// プレイヤーが近づくと攻撃ステートに遷移
-	if (DisPlayerChk() < 500.0f)
+	if (DisPlayerChk() < 600.0f)
 	{
 		m_state = Enemy3State::Attack;
 	}

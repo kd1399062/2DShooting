@@ -10,7 +10,8 @@ public:
 	{
 		Title,		// タイトル
 		Game,		// ゲーム
-		Result		// リザルト
+		Result,		// リザルト
+		Clear
 	};
 
 	void PreUpdate();

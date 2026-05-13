@@ -21,7 +21,7 @@ void C_Player::Init()
 	m_radius		= 32.0f;
 	m_mouse.x		= 0;
 	m_mouse.y		= 0;
-	m_energy		= 10;
+	m_energy		= 0;
 
 	
 	// 移動範囲設定
@@ -41,12 +41,6 @@ void C_Player::Update(Math::Vector2 scroll)
 {
 	//マウス座標関数
 	GetMousePos(&m_mouse);
-
-	//仮
-	if (m_energy <= 0)
-	{
-		m_aliveFlg = false;
-	}
 
 	// HP最小値設定
 	if (m_hp < 30)

@@ -11,6 +11,7 @@ public:
 	void Init();
 	void Draw();
 	void Update();
+	void Update(Math::Vector2 scroll);
 	void Release();
 
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
@@ -51,4 +52,16 @@ private:
 	float m_maxRHp = 0.0f;
 	float m_rhpRate = 0.0f;
 	float rhpWidth = 0.0f;
+
+	// 燃料チャージバー
+	KdTexture		m_ChargeFrameTex;					// 燃料チャージバー枠テクスチャ
+	KdTexture		m_ChargeTex;						// 燃料チャージバーテクスチャ
+	Math::Matrix    m_ChargeFrameMat;					// 燃料チャージバー枠行列
+	Math::Matrix    m_ChargeMat;						// 燃料チャージバー行列
+	Math::Vector2	m_ChargeSize = { 96,24 };	// サイズ
+	Math::Vector2	m_ChargePos = { 100,100 };	// 座標
+	float m_charge = 0.0f;
+	float m_maxCharge = 0.0f;
+	float m_chargeRate = 0.0f;
+	float chargeWidth = 0.0f;
 };

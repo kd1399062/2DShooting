@@ -26,4 +26,7 @@ private:
 
 	int m_energy;										// ”R—¿—Ê
 
+	int m_aliveTimeMax = 300;
+	int m_aliveTime = m_aliveTimeMax;
+
 };

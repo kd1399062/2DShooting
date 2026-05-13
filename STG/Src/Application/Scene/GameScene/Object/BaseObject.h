@@ -40,12 +40,13 @@ public:
 	virtual void ShotCoolTime();												// 弾発射クールタイム計算
 
 	bool GetAliveFlg() { return m_aliveFlg; }									// 生存フラグ取得
-	virtual float GetRadius() { return m_radius; }										// 半径取得
+	virtual float GetRadius() { return m_radius; }								// 半径取得
 	Math::Vector2 GetPos() { return m_pos; }									// 座標取得
 	ObjectType GetObjType() const { return m_objType; }							// オブジェクトタイプ取得
 
 	virtual void SetEnergy(int energyNum);										// 燃料取得
 	virtual int  GetEnergy();													// 燃料取得
+	virtual bool GetClearFlg();
 
 	// 燃料チャージ
 	virtual void AddCharge(int energy);

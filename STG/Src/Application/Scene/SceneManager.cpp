@@ -2,6 +2,7 @@
 
 #include "TitleScene/TitleScene.h"
 #include "GameScene/GameScene.h"
+#include "ClearScene/ClearScene.h"
 
 void C_SceneManager::Init()
 {
@@ -45,6 +46,11 @@ void C_SceneManager::ChangeScene(SceneType _SceneType)
 		case SceneType::Game:
 		{
 			m_CurrentScene = std::make_shared<C_GameScene>();
+			break;
+		}
+		case SceneType::Clear:
+		{
+			m_CurrentScene = std::make_shared<C_ClearScene>();
 			break;
 		}
 	}

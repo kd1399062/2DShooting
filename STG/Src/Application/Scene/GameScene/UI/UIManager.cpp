@@ -15,6 +15,12 @@ void C_UIManager::Init()
 	m_RHpTex.Load("Texture/UI/RocketHpBar.png");
 	m_RHpSize = { 96,24 };	// サイズ
 	m_RHpPos = { -350,300 };	// 座標
+
+	// ロケットHPバー
+	m_ChargeFrameTex.Load("Texture/UI/HpBarFrame.png");
+	m_ChargeTex.Load("Texture/UI/RocketHpBar.png");
+	m_ChargeSize = { 96,24 };	// サイズ
+	m_ChargePos = { 0,0 };	// 座標
 }
 
 void C_UIManager::Update()
@@ -42,6 +48,15 @@ void C_UIManager::Update()
 			m_rhpRate = m_rhp / m_maxRHp;
 			rhpWidth = (float)m_RHpSize.x * (float)m_rhpRate;
 		}
+
+		// 保持燃料取得
+		if (a->GetObjType() == C_BaseObject::ObjectType::Rocket)
+		{
+			m_maxCharge = 100.0f;
+			m_charge = a->GetEnergy();
+			m_chargeRate = m_charge / m_maxCharge;
+			chargeWidth = (float)m_ChargeSize.x * (float)m_chargeRate;
+		}
 	}
 
 	//==================== 行列 ====================
@@ -68,6 +83,20 @@ void C_UIManager::Update()
 	m_RHpMat = m_scaleMat * m_transMat;
 }
 
+void C_UIManager::Update(Math::Vector2 scroll)
+{
+	// 燃料チャージバー
+	m_scaleMat = Math::Matrix::CreateScale(5.0f, 1.0f, 1.0f);
+	m_transMat = Math::Matrix::CreateTranslation(m_ChargePos.x, m_ChargePos.y, 0);
+	m_ChargeFrameMat = m_scaleMat * m_transMat;
+
+	m_scaleMat = Math::Matrix::CreateScale(5.0f, 1.0f, 1.0f);
+	float offsetX3 = 0.0f;
+	offsetX3 = (m_ChargeSize.x - chargeWidth) * 0.5f * 5.0f;
+	m_transMat = Math::Matrix::CreateTranslation(m_ChargePos.x - offsetX3, m_ChargePos.y, 0);
+	m_ChargeMat = m_scaleMat * m_transMat;
+}
+
 void C_UIManager::Draw()
 {
 	// HPバー
@@ -81,6 +110,12 @@ void C_UIManager::Draw()
 	SHADER.m_spriteShader.DrawTex(&m_RHpFrameTex, Math::Rectangle(0, 0, m_RHpSize.x, m_RHpSize.y), 1.0f);
 	SHADER.m_spriteShader.SetMatrix(m_RHpMat);
 	SHADER.m_spriteShader.DrawTex(&m_RHpTex, Math::Rectangle(0, 0, rhpWidth, m_RHpSize.y), 1.0f);
+
+	// 燃料チャージバー
+	/*SHADER.m_spriteShader.SetMatrix(m_ChargeFrameMat);
+	SHADER.m_spriteShader.DrawTex(&m_ChargeFrameTex, Math::Rectangle(0, 0, m_ChargeSize.x, m_ChargeSize.y), 1.0f);
+	SHADER.m_spriteShader.SetMatrix(m_ChargeMat);
+	SHADER.m_spriteShader.DrawTex(&m_ChargeTex, Math::Rectangle(0, 0, chargeWidth, m_ChargeSize.y), 1.0f);*/
 }
 
 void C_UIManager::Release()

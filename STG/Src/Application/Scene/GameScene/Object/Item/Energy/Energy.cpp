@@ -15,6 +15,16 @@ void C_Energy::Init(Math::Vector2 pos, int energyNum)
 
 void C_Energy::Update(Math::Vector2 scroll)
 {
+	if (m_aliveTime > 0)
+	{
+		m_aliveTime--;
+	}
+
+	if (m_aliveTime <= 0)
+	{
+		m_aliveFlg = false;
+	}
+
 	//==================== s—ñ ====================
 	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);
 	m_transMat = Math::Matrix::CreateTranslation(m_pos.x - scroll.x, m_pos.y - scroll.y, 0);

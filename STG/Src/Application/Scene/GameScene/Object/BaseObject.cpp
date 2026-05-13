@@ -67,6 +67,11 @@ int C_BaseObject::GetEnergy()
 	return m_energy;
 }
 
+bool C_BaseObject::GetClearFlg()
+{
+	return false;
+}
+
 void C_BaseObject::AddCharge(int energy)
 {
 }

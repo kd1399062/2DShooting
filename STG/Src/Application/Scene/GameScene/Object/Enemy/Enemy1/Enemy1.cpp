@@ -11,6 +11,7 @@ void C_Enemy1::EnemyInit(Math::Vector2 pos)
 	m_objType = ObjectType::Enemy1;
 	m_aliveFlg = true;
 	m_maxHp = 10;
+
 	m_hp = m_maxHp;
 	m_size = { 64,64 };
 	m_pos = pos;

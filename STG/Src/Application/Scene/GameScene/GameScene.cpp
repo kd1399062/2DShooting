@@ -26,22 +26,22 @@ void C_GameScene::Init()
 	m_back->Init();
 	m_objList.push_back(m_back);
 
-	// プレイヤー
-	m_player = std::make_shared<C_Player>();
-	m_player->Init();
-	m_player->SetOwner(this);
-	m_objList.push_back(m_player);
+	// ロケット
+	std::shared_ptr<C_Rocket> m_rocket;
+	m_rocket = std::make_shared<C_Rocket>();
+	m_rocket->Init();
+	m_objList.push_back(m_rocket);
 
 	// 敵管理
 	m_enemyMng = std::make_shared<C_EnemyManager>();
 	m_enemyMng->SetOwner(this);
 	m_enemyMng->Init();
 
-	// ロケット
-	std::shared_ptr<C_Rocket> m_rocket;
-	m_rocket = std::make_shared<C_Rocket>();
-	m_rocket->Init();
-	m_objList.push_back(m_rocket);
+	// プレイヤー
+	m_player = std::make_shared<C_Player>();
+	m_player->Init();
+	m_player->SetOwner(this);
+	m_objList.push_back(m_player);
 
 }
 
@@ -96,11 +96,46 @@ void C_GameScene::Update()
 	// 当たり判定更新
 	m_collision->Update();
 
+
+
 	// Zでタイトルシーンへ遷移
 	if (GetAsyncKeyState('Z') & 0x8000)
 	{
 		C_SceneManager::Instance().SetNextScene(C_SceneManager::SceneType::Title);
 	}
+
+	if (GetAsyncKeyState('C') & 0x8000)
+	{
+		C_SceneManager::Instance().SetNextScene(C_SceneManager::SceneType::Clear);
+	}
+
+	// オブジェクトリスト取得
+	auto& list = GetObjList();
+
+	for (size_t i = 0; i < list.size(); i++)
+	{
+		auto& a = list[i];	// 対象1
+
+		// nullチェック
+		if (!a) continue;
+
+		// 死亡済みは無視
+		if (!a->GetAliveFlg()) continue;
+
+		Math::Vector2 v;	// 対象同士の距離
+		float rad = 0;		// 対象の半径の合計
+
+		//==================== 当たり判定 ====================
+		// プレイヤー弾と各敵の当たり判定
+		if (a->GetObjType() == C_BaseObject::ObjectType::Rocket)
+		{
+			if (a->GetClearFlg())
+			{
+				C_SceneManager::Instance().SetNextScene(C_SceneManager::SceneType::Title);
+			}
+		}
+	}
+	
 }
 
 void C_GameScene::Release()

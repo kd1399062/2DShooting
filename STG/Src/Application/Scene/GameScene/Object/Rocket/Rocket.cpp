@@ -20,6 +20,13 @@ void C_Rocket::Init()
 
 void C_Rocket::Update(Math::Vector2 scroll)
 {
+	// ÉNÉäÉAèàóù
+	if (m_energy >= m_energyMax)
+	{
+		m_clearFlg = true;
+	}
+
+
 	// HPç≈è¨ílê›íË
 	if (m_hp < 30)
 	{

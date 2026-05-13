@@ -83,7 +83,7 @@ void C_CollisionManager::Update()
 				}
 			}
 
-			// プレイヤーと燃料の当たり判定
+			// プレイヤーとロケットの当たり判定
 			if (a->GetObjType() == C_BaseObject::ObjectType::Player)
 			{
 				if (b->GetObjType() == C_BaseObject::ObjectType::Rocket)

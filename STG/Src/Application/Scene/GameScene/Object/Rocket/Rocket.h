@@ -19,7 +19,7 @@ public:
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
 
 	void AddCharge(int energy) override;									// 燃料チャージ
-	bool GetClearFlg(); 
+	bool GetClearFlg() override;
 
 private:
 	void Relese()	override;							// 解放処理
@@ -29,6 +29,6 @@ private:
 	bool m_clearFlg = false;							// クリアフラグ
 
 	// 燃料
-	int m_energyMax = 100;
+	int m_energyMax = 10;
 
 };
