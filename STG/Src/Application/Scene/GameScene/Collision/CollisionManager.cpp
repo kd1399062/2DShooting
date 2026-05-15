@@ -15,8 +15,8 @@ void C_CollisionManager::Update()
 	{
 		for (size_t j = i + 1; j < list.size(); j++)
 		{
-			auto& a = list[i];	// 対象1
-			auto& b = list[j];	// 対象2
+			auto a = list[i];	// 対象1
+			auto b = list[j];	// 対象2
 
 			// nullチェック
 			if (!a || !b) continue;
