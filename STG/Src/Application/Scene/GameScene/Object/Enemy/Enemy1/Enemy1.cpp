@@ -228,11 +228,21 @@ void C_Enemy1::AttackUpdate()
 
 
 	//==================== ’e”­ŽËˆ— ====================
+	Math::Vector2 shotPos = { 0,0 };
+	if (m_spriteDir > 0)
+	{
+		shotPos = { 50,0 };
+	}
+	else
+	{
+		shotPos = { -50,0 };
+	}
+
 	if (m_shotCool == m_shotCoolMax)
 	{
 		std::shared_ptr<C_Bullet> bullet;
 		bullet = std::make_shared<C_Bullet>();
-		bullet->Init(m_pos, m_shotDir, m_objType);
+		bullet->Init(m_pos + shotPos, m_shotDir, m_objType);
 		m_owner->AddObject(bullet);
 	}
 

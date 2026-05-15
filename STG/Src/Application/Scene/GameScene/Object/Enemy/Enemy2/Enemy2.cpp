@@ -39,6 +39,7 @@ void C_Enemy2::Update(Math::Vector2 scroll)
 	//==================== ダメージクールタイム処理 ====================
 	if (m_dmgCool > 0)
 	{
+
 		m_dmgCool--;
 	}
 
@@ -259,23 +260,32 @@ void C_Enemy2::AttackUpdate()
 		rightDir.y = centerDir.x * sinf(angle) + centerDir.y * cosf(angle);
 
 		//==================== 弾生成 ====================
+		Math::Vector2 shotPos = { 0,0 };
+		if (m_spriteDir > 0)
+		{
+			shotPos = { 70,-20 };
+		}
+		else
+		{
+			shotPos = { -70,-20 };
+		}
 
 		// 真ん中
 		std::shared_ptr<C_Bullet> bulletCenter;
 		bulletCenter = std::make_shared<C_Bullet>();
-		bulletCenter->Init(m_pos, centerDir, m_objType);
+		bulletCenter->Init(m_pos + shotPos, m_shotDir, m_objType);
 		m_owner->AddObject(bulletCenter);
 
 		// 左
 		std::shared_ptr<C_Bullet> bulletLeft;
 		bulletLeft = std::make_shared<C_Bullet>();
-		bulletLeft->Init(m_pos, leftDir, m_objType);
+		bulletLeft->Init(m_pos + shotPos, leftDir, m_objType);
 		m_owner->AddObject(bulletLeft);
 
 		// 右
 		std::shared_ptr<C_Bullet> bulletRight;
 		bulletRight = std::make_shared<C_Bullet>();
-		bulletRight->Init(m_pos, rightDir, m_objType);
+		bulletRight->Init(m_pos + shotPos, rightDir, m_objType);
 		m_owner->AddObject(bulletRight);
 	}
 
