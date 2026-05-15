@@ -26,6 +26,9 @@ public:
 private:
 	void Relese()	override;									// ‰ğ•úˆ—
 
+	// ‰æ‘œ‚ÌŒü‚«
+	void SpriteDir();
+
 	C_GameScene* m_owner = nullptr;
 
 	// ƒXƒNƒ[ƒ‹

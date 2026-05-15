@@ -39,6 +39,9 @@ void C_Player::Init()
 
 void C_Player::Update(Math::Vector2 scroll)
 {
+	// アニメーション
+	Anim();
+
 	//マウス座標関数
 	GetMousePos(&m_mouse);
 
@@ -101,6 +104,17 @@ void C_Player::Update(Math::Vector2 scroll)
 	{
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 		{
+			// 弾発射位置調整
+			Math::Vector2 shotPos = { 0,0 };
+			if (m_spriteDir > 0)
+			{
+				shotPos = { 50,10 };
+			}
+			else
+			{
+				shotPos = { -50,10 };
+			}
+
 			// ワールド座標変更
 			Math::Vector2 mouseWorld;
 
@@ -112,14 +126,15 @@ void C_Player::Update(Math::Vector2 scroll)
 
 			std::shared_ptr<C_Bullet> bullet;
 			bullet = std::make_shared<C_Bullet>();		// 生成
-			bullet->Init(m_pos, m_shotDir,m_objType);	// 初期化
+			bullet->Init(m_pos + shotPos, m_shotDir,m_objType);	// 初期化
 			m_owner->AddObject(bullet);					// シーンのオブジェクトリストへ追加
 		}
 
 	}
 
 	//==================== 行列 ====================
-	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);
+	SpriteDir();
+	m_scaleMat = Math::Matrix::CreateScale(m_scaleX * m_spriteDir, 1.0f, 1.0f);
 	m_transMat = Math::Matrix::CreateTranslation(m_pos.x - scroll.x, m_pos.y - scroll.y, 0);
 	m_mat = m_scaleMat * m_transMat;
 }
@@ -127,7 +142,7 @@ void C_Player::Update(Math::Vector2 scroll)
 void C_Player::Draw()
 {
 	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_size.x, m_size.y), 1.0f);
+	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(m_size.x * m_animNum, 0, m_size.x, m_size.y), 1.0f);
 }
 
 void C_Player::OnHit(int damage)
@@ -162,6 +177,21 @@ void C_Player::Dead()
 
 void C_Player::Relese()
 {
+}
+
+void C_Player::SpriteDir()
+{
+	//==================== 画像の向き計算 ====================
+	float WldMouseX = m_mouse.x + m_scroll.x;
+
+	if (WldMouseX >= m_pos.x)
+	{
+		m_spriteDir = 1;
+	}
+	else
+	{
+		m_spriteDir = -1;
+	}
 }
 
 void C_Player::GetMousePos(POINT* mousePos)
