@@ -5,13 +5,13 @@
 
 void C_Player::Init()
 {
-	m_tex.Load("Texture/Player/Player.png");
+	m_tex.Load("Texture/Player/PlayerAnim.png");
 
 	m_objType		= ObjectType::Player;
 	m_maxHp			= 100;
 	m_hp			= m_maxHp;
 	m_aliveFlg		= true;
-	m_size			= { 64,64 };
+	m_size			= { 96.0f,96.0f };
 	m_pos			= { 0,0 };
 	m_speed			= 10.0f;
 	m_maxDmgCool	= 10;

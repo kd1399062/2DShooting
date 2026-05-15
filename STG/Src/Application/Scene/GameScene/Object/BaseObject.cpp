@@ -24,6 +24,28 @@ void C_BaseObject::Draw()
 {
 }
 
+void C_BaseObject::Anim()
+{
+	// クールタイム加算
+	m_animCool++;
+
+	// 一定時間ごとにアニメ変更
+	if (m_animCool >= m_animCoolMax)
+	{
+		// 次のアニメへ
+		m_animNum++;
+
+		// 最大を超えたら最初へ
+		if (m_animNum >= m_animMax)
+		{
+			m_animNum = 0;
+		}
+
+		// クールタイムリセット
+		m_animCool = 0;
+	}
+}
+
 void C_BaseObject::OnHit()
 {
 }

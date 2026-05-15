@@ -32,6 +32,7 @@ public:
 	virtual void Update();														// 更新
 	virtual void Update(Math::Vector2 scroll);									// スクロール込み更新
 	virtual void Draw();														// 描画
+	virtual void Anim();														// アニメーション管理
 	virtual void OnHit();														// 当たり判定処理
 	virtual void OnHit(int damage);
 	virtual void Damage(int damage);
@@ -99,4 +100,9 @@ protected:
 	int				m_shotCool		= 10;			// 弾発射クールタイム
 	int				m_shotCoolMax	= 10;			// 最大弾発射クールタイム
 	int				m_energy		= 0;			// 保持燃料
+	int				m_spriteDir		= 1;			// 画像の向き
+	int				m_animNum		= 0;			// アニメーション番号
+	int				m_animMax		= 5;			// アニメーション枚数
+	int				m_animCool		= 0;			// アニメーションクールタイム
+	int				m_animCoolMax	= 3;			// 最大アニメーションクールタイム
 };

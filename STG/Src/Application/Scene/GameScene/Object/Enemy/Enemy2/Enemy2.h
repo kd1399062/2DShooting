@@ -38,6 +38,9 @@ private:
 	void  AttackUpdate();								// 攻撃更新
 	void  DeadUpdate();									// 死亡更新
 
+	// 画像の向き
+	void SpriteDir();
+
 	int m_stateTimer = 0;								// ステートタイマー
 	Enemy2State m_state = Enemy2State::Spawn;			// 現在のステート
 	Math::Vector2 m_searchDir = { 0,0 };				// search時の移動方向

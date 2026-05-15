@@ -38,6 +38,9 @@ private:
 	void  AttackUpdate();								// 攻撃更新
 	void  DeadUpdate();									// 死亡更新
 
+	// 画像の向き
+	void SpriteDir();
+
 	C_GameScene* m_owner = nullptr;
 
 	int m_stateTimer = 0;								// ステートタイマー

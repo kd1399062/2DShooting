@@ -6,17 +6,18 @@
 
 void C_Enemy1::EnemyInit(Math::Vector2 pos)
 {
-	m_tex.Load("Texture/Enemy/Enemy1.png");
+	m_tex.Load("Texture/Enemy/e1.png");
 
 	m_objType = ObjectType::Enemy1;
 	m_aliveFlg = true;
 	m_maxHp = 10;
 
 	m_hp = m_maxHp;
-	m_size = { 64,64 };
+	m_size = { 96.0f,96.0f };
+	m_animMax = 5;
 	m_pos = pos;
 	m_speed = 10;
-	m_radius = 32.0f;
+	m_radius = 48.0f;
 	m_maxDmgCool = 10;
 	m_dmgCool = m_maxDmgCool;
 	m_shotCoolMax = 40;
@@ -31,6 +32,9 @@ void C_Enemy1::EnemyInit(Math::Vector2 pos)
 
 void C_Enemy1::Update(Math::Vector2 scroll)
 {
+	// アニメーション
+	Anim();
+
 	// 移動量初期化
 	m_move = { 0,0 };
 
@@ -73,7 +77,8 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 
 
 	//==================== 行列 ====================
-	m_scaleMat = Math::Matrix::CreateScale(m_scaleX, 1.0f, 1.0f);
+	SpriteDir();
+	m_scaleMat = Math::Matrix::CreateScale(m_scaleX * m_spriteDir, 1.0f, 1.0f);
 	m_transMat = Math::Matrix::CreateTranslation(m_pos.x - scroll.x, m_pos.y - scroll.y, 0);
 	m_mat = m_scaleMat * m_transMat;
 }
@@ -81,7 +86,7 @@ void C_Enemy1::Update(Math::Vector2 scroll)
 void C_Enemy1::Draw()
 {
 	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_size.x, m_size.y), 1.0f);
+	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(m_size.x * m_animNum, 0, m_size.x, m_size.y), 1.0f);
 }
 
 void C_Enemy1::OnHit(int damage)
@@ -242,4 +247,33 @@ void C_Enemy1::AttackUpdate()
 
 void C_Enemy1::DeadUpdate()
 {
+}
+
+void C_Enemy1::SpriteDir()
+{
+	//==================== プレイヤー座標取得 ====================
+	auto& list = m_owner->GetObjList();
+	for (size_t i = 0; i < list.size(); i++)
+	{
+		auto& obj = list[i];
+
+		if (obj->GetObjType() == C_BaseObject::ObjectType::Player)
+		{
+			m_shotDir = obj->GetPos() - m_pos;
+			m_shotDir.Normalize();
+			break;
+		}
+	}
+
+	//==================== 画像の向き計算 ====================
+	if (DisPlayerChk() <= 300.0f) return;
+
+	if (m_move.x >= 0)
+	{
+		m_spriteDir = 1;
+	}
+	else
+	{
+		m_spriteDir = -1;
+	}
 }
