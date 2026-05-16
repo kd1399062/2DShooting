@@ -2,7 +2,7 @@
 
 void C_Energy::Init(Math::Vector2 pos, int energyNum)
 {
-	m_tex.Load("Texture/Item/Energy.png");
+	m_tex.Load("Texture/Item/ene.png");
 
 	m_objType = ObjectType::Energy;
 	m_aliveFlg = true;
