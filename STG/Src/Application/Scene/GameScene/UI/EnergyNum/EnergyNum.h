@@ -14,6 +14,8 @@ public:
 	void Draw();
 	void Release();
 
+	void SetEnergy(float energy);
+
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
 
 private:
@@ -21,7 +23,8 @@ private:
 
 	// エネルギー量
 	static const int NUM_MAX = 5;
-	int m_energyNum[NUM_MAX];
+	int m_num[NUM_MAX];				// 桁の数字
+	float m_charge = 0.0f;
 
 	KdTexture		m_tex;					// テクスチャ
 	Math::Vector2	m_pos[NUM_MAX];			// 座標

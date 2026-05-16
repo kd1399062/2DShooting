@@ -43,6 +43,9 @@ void C_UIManager::Update()
 			m_hp = a->GetHp();
 			m_hpRate = m_hp / m_maxHp;
 			hpWidth = (float)m_HpSize.x * (float)m_hpRate;
+
+			// 保持エネルギー取得
+			m_energyNum->SetEnergy(a->GetEnergy());
 		}
 
 		// ロケットHP取得

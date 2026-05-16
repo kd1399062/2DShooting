@@ -15,6 +15,8 @@ public:
 	void Update(Math::Vector2 scroll);
 	void Release();
 
+	float GetEnergyNum() { return m_charge; }
+
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
 
 private:
