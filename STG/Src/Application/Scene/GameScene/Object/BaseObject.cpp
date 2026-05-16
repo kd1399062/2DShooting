@@ -102,6 +102,24 @@ void C_BaseObject::UseEnergy(int energy)
 {
 }
 
+void C_BaseObject::ObjectFloat()
+{
+	m_floatTimer++;
+
+	if (m_floatTimer < 20)
+	{
+		m_move.y -= 0.5f;
+	}
+	else if (m_floatTimer < 40)
+	{
+		m_move.y += 0.5f;
+	}
+	else
+	{
+		m_floatTimer = 0;
+	}
+}
+
 void C_BaseObject::Relese()
 {
 }

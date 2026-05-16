@@ -57,6 +57,9 @@ public:
 	virtual float GetHp() { return (float)m_hp; }
 	virtual float GetMaxHp() { return (float)m_maxHp; }
 
+	// 浮遊感
+	virtual void ObjectFloat();
+
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }					// シーン情報をセット
 
 protected:
@@ -105,4 +108,5 @@ protected:
 	int				m_animMax		= 5;			// アニメーション枚数
 	int				m_animCool		= 0;			// アニメーションクールタイム
 	int				m_animCoolMax	= 3;			// 最大アニメーションクールタイム
+	int				m_floatTimer	= 0;			// 浮遊用カウント	
 };

@@ -64,6 +64,9 @@ void C_Enemy2::Update(Math::Vector2 scroll)
 	}
 
 	//==================== ˆÚ“®ˆ— ====================
+	// •‚—V
+	ObjectFloat();
+
 	// À•WŠm’è
 	m_pos += m_move;
 

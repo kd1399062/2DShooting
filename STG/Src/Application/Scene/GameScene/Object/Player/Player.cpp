@@ -79,6 +79,9 @@ void C_Player::Update(Math::Vector2 scroll)
 		m_move.y -= m_speed;
 	}
 
+	// •‚—V
+	ObjectFloat();
+
 	// À•WŠm’è
 	m_pos += m_move;
 
