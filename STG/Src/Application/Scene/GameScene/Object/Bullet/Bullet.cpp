@@ -11,28 +11,28 @@ void C_Bullet::Init(Math::Vector2 pos, Math::Vector2 dir, ObjectType obj)
 	switch (obj)
 	{
 	case ObjectType::Player:
-		m_tex.Load("Texture/Bullet/pBullet.png");
+		m_tex.Load("Texture/Bullet/p.png");
 		m_objType = ObjectType::PBullet;
 		m_speed = 20;
 		m_radius = 16.0f;
 		m_aliveTime = 50;
 		break;
 	case ObjectType::Enemy1:
-		m_tex.Load("Texture/Bullet/e1Bullet.png");
+		m_tex.Load("Texture/Bullet/e1.png");
 		m_objType = ObjectType::E1Bullet;
 		m_speed = 10;
 		m_radius = 16.0f;
 		m_aliveTime = 60;
 		break;
 	case ObjectType::Enemy2:
-		m_tex.Load("Texture/Bullet/e2Bullet.png");
+		m_tex.Load("Texture/Bullet/e2.png");
 		m_objType = ObjectType::E2Bullet;
 		m_speed = 7;
-		m_radius = 16.0f;
+		m_radius = 32.0f;
 		m_aliveTime = 70;
 		break;
 	case ObjectType::Enemy3:
-		m_tex.Load("Texture/Bullet/e3Bullet.png");
+		m_tex.Load("Texture/Bullet/e3.png");
 		m_objType = ObjectType::E3Bullet;
 		m_speed = 10;
 		m_radius = 16.0f;
