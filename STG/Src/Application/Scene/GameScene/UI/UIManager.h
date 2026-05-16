@@ -1,6 +1,7 @@
 #pragma once
 
 class C_GameScene;
+class C_EnergyNum;
 
 class C_UIManager
 {
@@ -64,4 +65,7 @@ private:
 	float m_maxCharge = 0.0f;
 	float m_chargeRate = 0.0f;
 	float chargeWidth = 0.0f;
+
+	// 保持エナジーUI
+	std::shared_ptr<C_EnergyNum> m_energyNum;
 };

@@ -94,6 +94,9 @@
     <Filter Include="Src\Application\Scene\ClearScene">
       <UniqueIdentifier>{dd6e16df-55b7-4641-ad42-5f0765c053a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\UI\EnergyNum">
+      <UniqueIdentifier>{d71dee4b-2e81-48b4-a13f-312c0cdbc696}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -243,6 +246,9 @@
     <ClInclude Include="Src\Application\Scene\ClearScene\ClearScene.h">
       <Filter>Src\Application\Scene\ClearScene</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\UI\EnergyNum\EnergyNum.h">
+      <Filter>Src\Application\Scene\GameScene\UI\EnergyNum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -361,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\ClearScene\ClearScene.cpp">
       <Filter>Src\Application\Scene\ClearScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\UI\EnergyNum\EnergyNum.cpp">
+      <Filter>Src\Application\Scene\GameScene\UI\EnergyNum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

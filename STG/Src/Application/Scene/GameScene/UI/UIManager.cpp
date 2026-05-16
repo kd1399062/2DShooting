@@ -1,6 +1,7 @@
 #include "UIManager.h"
 #include "../../../Scene/GameScene/GameScene.h"
 #include "../Object/BaseObject.h"
+#include "EnergyNum/EnergyNum.h"
 
 void C_UIManager::Init()
 {
@@ -21,6 +22,10 @@ void C_UIManager::Init()
 	m_ChargeTex.Load("Texture/UI/RocketHpBar.png");
 	m_ChargeSize = { 96,24 };	// サイズ
 	m_ChargePos = { 0,0 };	// 座標
+
+	// 保持エナジーUI
+	m_energyNum = std::make_shared<C_EnergyNum>();
+	m_energyNum->Init();
 }
 
 void C_UIManager::Update()
@@ -58,6 +63,9 @@ void C_UIManager::Update()
 			chargeWidth = (float)m_ChargeSize.x * (float)m_chargeRate;
 		}
 	}
+
+	// 保持エナジーUI
+	m_energyNum->Update();
 
 	//==================== 行列 ====================
 	// HPバー
@@ -111,11 +119,8 @@ void C_UIManager::Draw()
 	SHADER.m_spriteShader.SetMatrix(m_RHpMat);
 	SHADER.m_spriteShader.DrawTex(&m_RHpTex, Math::Rectangle(0, 0, rhpWidth, m_RHpSize.y), 1.0f);
 
-	// 燃料チャージバー
-	/*SHADER.m_spriteShader.SetMatrix(m_ChargeFrameMat);
-	SHADER.m_spriteShader.DrawTex(&m_ChargeFrameTex, Math::Rectangle(0, 0, m_ChargeSize.x, m_ChargeSize.y), 1.0f);
-	SHADER.m_spriteShader.SetMatrix(m_ChargeMat);
-	SHADER.m_spriteShader.DrawTex(&m_ChargeTex, Math::Rectangle(0, 0, chargeWidth, m_ChargeSize.y), 1.0f);*/
+	// 保持エナジーUI
+	m_energyNum->Draw();
 }
 
 void C_UIManager::Release()
