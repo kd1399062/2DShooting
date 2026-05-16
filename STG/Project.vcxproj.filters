@@ -97,6 +97,9 @@
     <Filter Include="Src\Application\Scene\GameScene\UI\EnergyNum">
       <UniqueIdentifier>{d71dee4b-2e81-48b4-a13f-312c0cdbc696}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Effect">
+      <UniqueIdentifier>{dd5a7ea0-5a03-41e4-b7e5-63bcd51b9c10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">

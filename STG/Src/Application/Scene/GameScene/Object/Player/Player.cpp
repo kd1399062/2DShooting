@@ -216,3 +216,4 @@ void C_Player::UseEnergy(int energyNum)
 	m_energy -= energyNum;
 }
 
+

@@ -23,9 +23,9 @@ void C_Rocket::Update(Math::Vector2 scroll)
 	// クリア処理
 	if (m_energy >= m_energyMax)
 	{
-		m_clearFlg = true;
+		//m_clearFlg = true;
+		m_aliveFlg = false;
 	}
-
 
 	// HP最小値設定
 	if (m_hp < 30)
@@ -60,19 +60,19 @@ void C_Rocket::Draw()
 	SHADER.m_spriteShader.DrawTex(&m_tex, Math::Rectangle(0, 0, m_size.x, m_size.y), 1.0f);
 }
 
-void C_Rocket::AddCharge(int energy)
-{
-	m_energy += energy;
-
-	if (m_energy >= m_energyMax)
-	{
-		// 最大燃料数で固定
-		m_energy = m_energyMax;
-
-		// クリア
-		m_clearFlg = true;
-	}
-}
+//void C_Rocket::AddCharge(int energy)
+//{
+//	m_energy += energy;
+//
+//	if (m_energy >= m_energyMax)
+//	{
+//		// 最大燃料数で固定
+//		m_energy = m_energyMax;
+//
+//		// クリア
+//		m_clearFlg = true;
+//	}
+//}
 
 bool C_Rocket::GetClearFlg()
 {

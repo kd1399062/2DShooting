@@ -77,6 +77,7 @@ void C_CollisionManager::Update()
 					if (v.Length() < rad)
 					{
 						// HIT時の処理
+						//a->AddCharge(b->GetEnergy());
 						a->SetEnergy(b->GetEnergy());
 						b->OnHit();
 					}
@@ -84,9 +85,9 @@ void C_CollisionManager::Update()
 			}
 
 			// プレイヤーとロケットの当たり判定
-			if (a->GetObjType() == C_BaseObject::ObjectType::Player)
+			if (a->GetObjType() == C_BaseObject::ObjectType::Rocket)
 			{
-				if (b->GetObjType() == C_BaseObject::ObjectType::Rocket)
+				if (b->GetObjType() == C_BaseObject::ObjectType::Player)
 				{
 					v = b->GetPos() - a->GetPos();
 					rad = b->GetRadius() + a->GetRadius();
@@ -94,8 +95,10 @@ void C_CollisionManager::Update()
 					if (v.Length() < rad)
 					{
 						// HIT時の処理
-						b->AddCharge(a->GetEnergy());
-						a->UseEnergy(a->GetEnergy());
+						b->UseEnergy(a->GetEnergy());
+						a->SetEnergy(a->GetEnergy());
+
+						a->OnHit(1);
 					}
 				}
 			}

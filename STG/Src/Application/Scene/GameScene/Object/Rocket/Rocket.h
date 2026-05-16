@@ -18,7 +18,6 @@ public:
 
 	void SetOwner(C_GameScene* _owner) { m_owner = _owner; }	// シーン情報をセット
 
-	void AddCharge(int energy) override;									// 燃料チャージ
 	bool GetClearFlg() override;
 
 private:

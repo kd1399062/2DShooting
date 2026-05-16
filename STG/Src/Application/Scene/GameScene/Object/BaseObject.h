@@ -45,13 +45,13 @@ public:
 	Math::Vector2 GetPos() { return m_pos; }									// 座標取得
 	ObjectType GetObjType() const { return m_objType; }							// オブジェクトタイプ取得
 
-	virtual void SetEnergy(int energyNum);										// 燃料取得
-	virtual int  GetEnergy();													// 燃料取得
+	
 	virtual bool GetClearFlg();
 
-	// 燃料チャージ
-	virtual void AddCharge(int energy);
-	virtual void UseEnergy(int energy);
+	// 燃料
+	virtual void SetEnergy(int energy);											// 燃料取得
+	virtual int  GetEnergy();													// 燃料参照
+	virtual void UseEnergy(int energy);											// 燃料使用
 
 	// HP取得
 	virtual float GetHp() { return (float)m_hp; }

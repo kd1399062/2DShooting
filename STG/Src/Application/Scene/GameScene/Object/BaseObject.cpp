@@ -79,25 +79,6 @@ void C_BaseObject::ShotCoolTime()
 	}
 }
 
-void C_BaseObject::SetEnergy(int energyNum)
-{
-	m_energy += energyNum;
-}
-
-int C_BaseObject::GetEnergy()
-{
-	return m_energy;
-}
-
-bool C_BaseObject::GetClearFlg()
-{
-	return false;
-}
-
-void C_BaseObject::AddCharge(int energy)
-{
-}
-
 void C_BaseObject::UseEnergy(int energy)
 {
 }
